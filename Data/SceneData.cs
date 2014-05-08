@@ -12,15 +12,15 @@ namespace HanselAndGretel.Data
 		#region Properties
 
 		public List<Rectangle> MoveArea;
-		public List<Waypoint> Waypoints;
+		//public List<Waypoint> Waypoints;
 
-		public List<InteractiveObject> InteractiveObjects;
+		//public List<InteractiveObject> InteractiveObjects;
 		//public List<InteractiveSpineObject> InteractiveSpineObjects;
 
-		public List<Collectable> Collectables;
-		public List<Item> Items;
+		//public List<Collectable> Collectables;
+		//public List<Item> Items;
 
-		public List<Enemy> Enemies;
+		//public List<Enemy> Enemies;
 
 		//public List<Light> Lights;
 		//public List<Emitter> Emitter;
