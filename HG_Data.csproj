@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>a58d7617-9dc0-4a86-819b-88b73fb1a62f</ProjectGuid>
+    <ProjectGuid>{21BDAE00-DB31-4A09-8E55-BE172DB224CE}</ProjectGuid>
     <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -59,8 +59,37 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Character\Character.cs" />
+    <Compile Include="Character\Enemy\Enemy.cs" />
+    <Compile Include="Character\Enemy\Mother.cs" />
+    <Compile Include="Character\Enemy\Spider.cs" />
+    <Compile Include="Character\Enemy\Witch.cs" />
+    <Compile Include="Character\Enemy\Wolf.cs" />
+    <Compile Include="Character\Player\Gretel.cs" />
+    <Compile Include="Character\Player\Hansel.cs" />
+    <Compile Include="Character\Player\Inventory.cs" />
+    <Compile Include="Character\Player\InventorySlot.cs" />
+    <Compile Include="Character\Player\Player.cs" />
+    <Compile Include="Data\Activity.cs" />
+    <Compile Include="Data\SceneData.cs" />
+    <Compile Include="Data\Waypoint.cs" />
+    <Compile Include="Objects\Collectables\Artefact.cs" />
+    <Compile Include="Objects\Collectables\Collectable.cs" />
+    <Compile Include="Objects\Collectables\DiaryEntry.cs" />
+    <Compile Include="Objects\Collectables\Toy.cs" />
+    <Compile Include="Objects\Items\Branch.cs" />
+    <Compile Include="Objects\Items\Item.cs" />
+    <Compile Include="Objects\Items\Key.cs" />
+    <Compile Include="Objects\Items\Knife.cs" />
+    <Compile Include="Objects\Items\Lantern.cs" />
+    <Compile Include="Objects\Items\Matches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KryptonEngine\KryptonEngine.csproj">
+      <Project>{4beca7bb-c7c4-401e-a263-49b8bbba2cae}</Project>
+      <Name>KryptonEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
