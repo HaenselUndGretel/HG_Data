@@ -20,6 +20,8 @@ namespace HanselAndGretel.Data
 
 		#region Getter & Setter
 
+		public DrawPackage DrawPackage { get { return new DrawPackage(Position, 0, CollisionBox, mDebugColor); } }
+
 		#endregion
 
 		#region Constructor
@@ -36,7 +38,7 @@ namespace HanselAndGretel.Data
 
 		public override void Initialize()
 		{
-			mDebugColor = Color.Pink;
+			mDebugColor = Color.LightYellow;
 		}
 
 		public override void LoadContent()
@@ -47,11 +49,6 @@ namespace HanselAndGretel.Data
 		public override void Update()
 		{
 			
-		}
-
-		public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
-		{
-			spriteBatch.Draw(TextureManager.Instance.GetElementByString("pixel"), CollisionBox, mDebugColor);
 		}
 
 		#endregion

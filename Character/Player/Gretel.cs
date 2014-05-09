@@ -33,25 +33,11 @@ namespace HanselAndGretel.Data
 
 		public override void Initialize()
 		{
+			base.Initialize();
 			mInput = InputHelper.Player2;
 			mCollisionBox.Width = 40;
 			mCollisionBox.Height = 90;
 			mSpeed = 10;
-		}
-
-		public override void LoadContent()
-		{
-			base.LoadContent();
-		}
-
-		public override void Update(List<Rectangle> pMoveArea)
-		{
-			base.Update(pMoveArea);
-		}
-
-		public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
-		{
-			base.Draw(spriteBatch);
 		}
 
 		#endregion
