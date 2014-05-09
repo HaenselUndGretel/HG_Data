@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KryptonEngine.Controls;
+using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +16,13 @@ namespace HanselAndGretel.Data
 
 		#endregion
 
+		#region Getter & Setter
+
+		#endregion
+
+		#region Constructor
+
+		#endregion
 
 		#region Override Methods
 
@@ -26,7 +35,6 @@ namespace HanselAndGretel.Data
 		public override void Update()
 		{
 			base.Update();
-			throw new System.NotImplementedException();
 		}
 
 		#endregion

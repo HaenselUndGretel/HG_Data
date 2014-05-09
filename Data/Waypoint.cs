@@ -8,5 +8,24 @@ namespace HanselAndGretel.Data
 {
 	public class Waypoint : GameObject
 	{
+		#region Properties
+
+		#endregion
+
+		#region Getter & Setter
+
+		#endregion
+
+		#region Constructor
+
+		#endregion
+
+		#region OverrideMethods
+
+		#endregion
+
+		#region Methods
+
+		#endregion
 	}
 }

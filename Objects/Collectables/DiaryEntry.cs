@@ -7,5 +7,24 @@ namespace HanselAndGretel.Data
 {
 	public class DiaryEntry : Collectable
 	{
+		#region Properties
+
+		#endregion
+
+		#region Getter & Setter
+
+		#endregion
+
+		#region Constructor
+
+		#endregion
+
+		#region OverrideMethods
+
+		#endregion
+
+		#region Methods
+
+		#endregion
 	}
 }

@@ -13,5 +13,21 @@ namespace HanselAndGretel.Data
 		public Item Item;
 
 		#endregion
+
+		#region Getter & Setter
+
+		#endregion
+
+		#region Constructor
+
+		#endregion
+
+		#region OverrideMethods
+
+		#endregion
+
+		#region Methods
+
+		#endregion
 	}
 }

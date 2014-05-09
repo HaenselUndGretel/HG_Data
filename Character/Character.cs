@@ -15,6 +15,14 @@ namespace HanselAndGretel.Data
 
 		#endregion
 
+		#region Getter & Setter
+
+		#endregion
+
+		#region Constructor
+
+		#endregion
+
 		#region Override Methods
 
 		public override void Initialize()
