@@ -29,7 +29,6 @@ namespace HanselAndGretel.Data
 		public Character(Vector2 pPosition)
 			:base(pPosition)
 		{
-			Initialize();
 		}
 
 		#endregion
@@ -38,6 +37,7 @@ namespace HanselAndGretel.Data
 
 		public override void Initialize()
 		{
+			base.Initialize();
 			mDebugColor = Color.LightYellow;
 		}
 

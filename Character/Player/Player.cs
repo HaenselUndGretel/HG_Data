@@ -27,7 +27,7 @@ namespace HanselAndGretel.Data
 		public Player(Vector2 pPosition)
 			:base(pPosition)
 		{
-			Initialize();
+			
 		}
 
 		#endregion
@@ -37,7 +37,7 @@ namespace HanselAndGretel.Data
 		public override void Initialize()
 		{
 			base.Initialize();
-			mDebugColor = Color.Pink;
+			mDebugColor = Color.LimeGreen;
 		}
 
 		#endregion
