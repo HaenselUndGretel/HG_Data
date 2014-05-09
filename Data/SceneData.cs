@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using KryptonEngine.Entities;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using KryptonEngine.Manager;
 
 namespace HanselAndGretel.Data
 {
@@ -53,11 +55,15 @@ namespace HanselAndGretel.Data
 
 		#endregion
 
-		#region OverrideMethods
-
-		#endregion
-
 		#region Methods
+
+		public void DrawDebug(SpriteBatch spriteBatch)
+		{
+			foreach (Rectangle rect in MoveArea)
+			{
+				spriteBatch.Draw(TextureManager.Instance.GetElementByString("pixel"), rect, Color.Blue);
+			}
+		}
 
 		#endregion
 	}

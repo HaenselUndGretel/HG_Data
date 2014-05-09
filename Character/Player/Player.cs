@@ -13,6 +13,8 @@ namespace HanselAndGretel.Data
 
 		public Inventory Inventory;
 		public List<Activity> Abilities;
+		protected InputHelper mInput;
+		protected float mSpeed;
 
 		#endregion
 
@@ -22,24 +24,30 @@ namespace HanselAndGretel.Data
 
 		#region Constructor
 
+		public Player(Vector2 pPosition)
+			:base(pPosition)
+		{
+
+		}
+
 		#endregion
 
 		#region Override Methods
 
 		public override void Initialize()
 		{
-			base.Initialize();
-			throw new System.NotImplementedException();
-		}
-
-		public override void Update()
-		{
-			base.Update();
+			
 		}
 
 		#endregion
 
 		#region Methods
+
+		public virtual void Update(List<Rectangle> pMoveArea)
+		{
+			base.Update();
+			Move(mInput.Movement * mSpeed, pMoveArea);
+		}
 
 		public void CheckForAbility(Activity pAcitvity)
 		{

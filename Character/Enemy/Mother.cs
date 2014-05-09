@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,12 @@ namespace HanselAndGretel.Data
 		#endregion
 
 		#region Constructor
+
+		public Mother(Vector2 pPosition)
+			:base(pPosition)
+		{
+
+		}
 
 		#endregion
 

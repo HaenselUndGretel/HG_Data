@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using KryptonEngine.Entities;
 using Microsoft.Xna.Framework;
+using KryptonEngine;
+using KryptonEngine.Manager;
+using KryptonEngine.Physics;
 
 namespace HanselAndGretel.Data
 {
@@ -21,13 +24,19 @@ namespace HanselAndGretel.Data
 
 		#region Constructor
 
+		public Character(Vector2 pPosition)
+			:base(pPosition)
+		{
+			Initialize();
+		}
+
 		#endregion
 
 		#region Override Methods
 
 		public override void Initialize()
 		{
-			throw new System.NotImplementedException();
+			mDebugColor = Color.Pink;
 		}
 
 		public override void LoadContent()
@@ -37,21 +46,21 @@ namespace HanselAndGretel.Data
 
 		public override void Update()
 		{
-			throw new System.NotImplementedException();
+			
 		}
 
 		public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
 		{
-			throw new System.NotImplementedException();
+			spriteBatch.Draw(TextureManager.Instance.GetElementByString("pixel"), CollisionBox, mDebugColor);
 		}
 
 		#endregion
 
 		#region Methods
 
-		public void Move(Vector2 pDelta)
+		public void Move(Vector2 pDelta, List<Rectangle> pMoveArea)
 		{
-			throw new System.NotImplementedException();
+			Position += Collision.CollisionCheckedVector(CollisionBox, (int)pDelta.X, (int)pDelta.Y, pMoveArea);
 		}
 
 		#endregion
