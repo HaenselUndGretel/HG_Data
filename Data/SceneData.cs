@@ -30,6 +30,23 @@ namespace HanselAndGretel.Data
 
 		#endregion
 
+		#region Getter & Setter
+
+		public List<DrawPackage> DrawPackages
+		{
+			get
+			{
+				List<DrawPackage> TmpList = new List<DrawPackage>();
+				foreach (Rectangle rect in MoveArea)
+				{
+					TmpList.Add(new DrawPackage(new Vector2(rect.X, rect.Y), 0, rect, Color.Blue));
+				}
+				return TmpList;
+			}
+		}
+
+		#endregion
+
 		#region Constructor
 
 		#endregion
@@ -43,26 +60,6 @@ namespace HanselAndGretel.Data
 		public void LoadLevel(int pLevelId)
 		{
 			throw new System.NotImplementedException();
-		}
-
-		#endregion
-
-		#region Getter & Setter
-
-		#endregion
-
-		#region Constructor
-
-		#endregion
-
-		#region Methods
-
-		public void DrawDebug(SpriteBatch spriteBatch)
-		{
-			foreach (Rectangle rect in MoveArea)
-			{
-				spriteBatch.Draw(TextureManager.Instance.GetElementByString("pixel"), rect, Color.Blue);
-			}
 		}
 
 		#endregion
