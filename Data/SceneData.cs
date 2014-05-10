@@ -6,6 +6,7 @@ using KryptonEngine.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using KryptonEngine.Manager;
+using System.Xml.Serialization;
 
 namespace HanselAndGretel.Data
 {
@@ -13,8 +14,10 @@ namespace HanselAndGretel.Data
 	{
 		#region Properties
 
+		// Damit die Camera weiß in welchem Bereich sie sich bewegen darf. 
+		public Rectangle GamePlane;
 		public List<Rectangle> MoveArea;
-		//public List<Waypoint> Waypoints;
+		public List<Waypoint> Waypoints;
 
 		//public List<InteractiveObject> InteractiveObjects;
 		//public List<InteractiveSpineObject> InteractiveSpineObjects;
@@ -32,6 +35,9 @@ namespace HanselAndGretel.Data
 
 		#region Getter & Setter
 
+		// XmlIgnoreAttribute, da in DrawPackage Objekte sind die nicht serializiert werden können. Ich vermute das es das Skeleton ist.
+		// Müssen aber nicht Serializiert werden, da man das kopieren auch in einer Funktion machen kann.
+		[XmlIgnoreAttribute]
 		public List<DrawPackage> DrawPackages
 		{
 			get
@@ -49,6 +55,11 @@ namespace HanselAndGretel.Data
 
 		#region Constructor
 
+		// Wird für die Serializierung benötigt
+		public SceneData()
+		{
+
+		}
 		#endregion
 
 		#region OverrideMethods
@@ -56,6 +67,21 @@ namespace HanselAndGretel.Data
 		#endregion
 
 		#region Methods
+
+		public void Initialize()
+		{
+			MoveArea = new List<Rectangle>();
+			Waypoints = new List<Waypoint>();
+		}
+
+		/// <summary>
+		/// Leert alle Listen.
+		/// </summary>
+		public void ResetLevel()
+		{
+			MoveArea.Clear();
+			Waypoints.Clear();
+		}
 
 		public void LoadLevel(int pLevelId)
 		{
