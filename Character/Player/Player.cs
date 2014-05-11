@@ -18,6 +18,10 @@ namespace HanselAndGretel.Data
 		protected InputHelper mInput;
 		protected float mSpeed;
 
+		//References
+		private Player rOtherPlayer;
+		
+
 		#endregion
 
 		#region Getter & Setter
@@ -46,37 +50,81 @@ namespace HanselAndGretel.Data
 
 		#region Methods
 
-		public virtual void Update(List<Rectangle> pMoveArea)
+		public void LoadReferences(Camera pCamera, Player pOtherPlayer, SceneData pScene)
+		{
+			base.LoadReferences(pCamera, pScene);
+			rOtherPlayer = pOtherPlayer;
+		}
+
+		public override void Update()
 		{
 			base.Update();
-			Move(mInput.Movement * mSpeed, pMoveArea);
+			Move(ViewportCheckedVector(mInput.Movement * mSpeed), GetBodiesForCollisionCheck());
+		}
+
+		protected List<Rectangle> GetBodiesForCollisionCheck()
+		{
+			List<Rectangle> TmpMoveArea = new List<Rectangle>(rScene.MoveArea);
+			TmpMoveArea.Add(rOtherPlayer.CollisionBox);
+			return TmpMoveArea;
+		}
+
+		protected Vector2 ViewportCheckedVector(Vector2 pMovement)
+		{
+			if (InCameraBounds(pMovement))
+			{
+				return pMovement;
+			}
+			Vector2 TmpMovementInBounds = Vector2.Zero;
+			int TmpSteps = (pMovement.X < pMovement.Y) ? (int)pMovement.Y : (int)pMovement.X;
+			for (int i = 0; i < TmpSteps; i++) //Move Player step für step weniger, bis er in den Camera Viewport passt.
+			{
+				TmpMovementInBounds = pMovement - (pMovement / TmpSteps) * i;
+				if (InCameraBounds(TmpMovementInBounds))
+					return TmpMovementInBounds;
+			}
+			return Vector2.Zero;
+		}
+
+		protected bool InCameraBounds(Vector2 pMovement)
+		{
+			if (CollisionBox.X + pMovement.X < 0 || CollisionBox.Y + pMovement.Y < 0 || CollisionBox.Right + pMovement.X > rCamera.GameScreen.Right || CollisionBox.Bottom + pMovement.Y > rCamera.GameScreen.Bottom)
+				return false;
+			Rectangle TmpThisPlayer = new Rectangle(PositionX + (int)pMovement.X, PositionY + (int)pMovement.Y, CollisionBox.Width, CollisionBox.Height);
+			//Horizontal
+			Rectangle TmpPlayerLeft;
+			Rectangle TmpPlayerRight;
+			if (rOtherPlayer.CollisionBox.X < Position.X)
+			{
+				TmpPlayerLeft = rOtherPlayer.CollisionBox;
+				TmpPlayerRight = TmpThisPlayer;
+			}
+			else
+			{
+				TmpPlayerLeft = TmpThisPlayer;
+				TmpPlayerRight = rOtherPlayer.CollisionBox;
+			}
+			//Vertical
+			Rectangle TmpPlayerUp;
+			Rectangle TmpPlayerDown;
+			if (rOtherPlayer.CollisionBox.Y < Position.Y)
+			{
+				TmpPlayerUp = rOtherPlayer.CollisionBox;
+				TmpPlayerDown = TmpThisPlayer;
+			}
+			else
+			{
+				TmpPlayerUp = TmpThisPlayer;
+				TmpPlayerDown = rOtherPlayer.CollisionBox;
+			}
+			//Test
+			Rectangle TmpRectangleToCheck = new Rectangle(TmpPlayerLeft.Left, TmpPlayerUp.Top, TmpPlayerRight.Right - TmpPlayerLeft.Left, TmpPlayerDown.Bottom - TmpPlayerUp.Top);
+			return (TmpRectangleToCheck.Width <= rCamera.ViewportMaxDimension.X && TmpRectangleToCheck.Height <= rCamera.ViewportMaxDimension.Y) ? true : false;
 		}
 
 		public void CheckForAbility(Activity pAcitvity)
 		{
 			throw new System.NotImplementedException();
-		}
-
-		/// <summary>
-		/// Forced den Player in den Viewport der Camera.
-		/// </summary>
-		public void ForceInCameraViewport(Camera pCamera, List<Rectangle> pMoveArea)
-		{
-			Move(ForceInCameraViewportDelta(pCamera), pMoveArea);
-		}
-
-		/// <summary>
-		/// Gibt den Vector2 zurück den der Player bewegt werden muss um in die Camera geforced zu sein.
-		/// </summary>
-		public Vector2 ForceInCameraViewportDelta(Camera pCamera)
-		{
-			Vector2 TmpNewPosition = Vector2.Zero;
-			Rectangle TmpCameraViewport = new Rectangle((int)(pCamera.Position.X - EngineSettings.VirtualResWidth / 2 / pCamera.Scale), (int)(pCamera.Position.Y - EngineSettings.VirtualResHeight / 2 / pCamera.Scale), (int)(EngineSettings.VirtualResWidth / pCamera.Scale), (int)(EngineSettings.VirtualResHeight / pCamera.Scale));
-			if (CollisionBox.Left < TmpCameraViewport.Left) TmpNewPosition.X = TmpCameraViewport.Left;
-			if (CollisionBox.Top < TmpCameraViewport.Top) TmpNewPosition.Y = TmpCameraViewport.Top;
-			if (CollisionBox.Right > TmpCameraViewport.Right) TmpNewPosition.X = TmpCameraViewport.Right - CollisionBox.Width;
-			if (CollisionBox.Bottom > TmpCameraViewport.Bottom) TmpNewPosition.Y = TmpCameraViewport.Bottom - CollisionBox.Height;
-			return TmpNewPosition - Position;
 		}
 
 		#endregion

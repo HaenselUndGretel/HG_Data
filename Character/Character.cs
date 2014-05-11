@@ -16,6 +16,10 @@ namespace HanselAndGretel.Data
 
 		public SpineObject Model;
 
+		//References
+		protected Camera rCamera;
+		protected SceneData rScene;
+
 		#endregion
 
 		#region Getter & Setter
@@ -54,6 +58,12 @@ namespace HanselAndGretel.Data
 		#endregion
 
 		#region Methods
+
+		public void LoadReferences(Camera pCamera, SceneData pScene)
+		{
+			rCamera = pCamera;
+			rScene = pScene;
+		}
 
 		public void Move(Vector2 pDelta, List<Rectangle> pMoveArea)
 		{
