@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using KryptonEngine.Manager;
 using System.Xml.Serialization;
+using System.IO;
+using KryptonEngine;
 
 namespace HanselAndGretel.Data
 {
@@ -14,8 +16,7 @@ namespace HanselAndGretel.Data
 	{
 		#region Properties
 
-		// Damit die Camera weiß in welchem Bereich sie sich bewegen darf. 
-		public Rectangle GamePlane;
+		public Rectangle GamePlane; // Damit die Camera weiß in welchem Bereich sie sich bewegen darf. 
 		public List<Rectangle> MoveArea;
 		public List<Waypoint> Waypoints;
 
@@ -81,11 +82,6 @@ namespace HanselAndGretel.Data
 		{
 			MoveArea.Clear();
 			Waypoints.Clear();
-		}
-
-		public void LoadLevel(int pLevelId)
-		{
-			throw new System.NotImplementedException();
 		}
 
 		#endregion
