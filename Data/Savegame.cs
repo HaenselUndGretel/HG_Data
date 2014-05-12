@@ -43,37 +43,47 @@ namespace HanselAndGretel.Data
 
 		public Savegame()
 		{
-
+			Initialize();
 		}
 
-		#endregion
-
-		#region Override Methods
+		public Savegame(Savegame pSavegame)
+		{
+			Artefacts = pSavegame.Artefacts;
+			Toys = pSavegame.Toys;
+			Diary = pSavegame.Diary;
+			InventoryHansel = pSavegame.InventoryHansel;
+			InventoryGretel = pSavegame.InventoryGretel;
+			Chalk = pSavegame.Chalk;
+			WaypointHansel = pSavegame.WaypointHansel;
+			WaypointGretel = pSavegame.WaypointGretel;
+			Scenes = pSavegame.Scenes;
+		}
 
 		#endregion
 
 		#region Methods
 
-		
-
-		public void Load()
+		public void Initialize()
 		{
-			FileInfo file = new FileInfo(SavegamePath);
+			Artefacts = new List<Artefact>();
+			Toys = new List<Toy>();
+			Diary = new List<DiaryEntry>();
+			InventoryHansel = new Inventory();
+			InventoryGretel = new Inventory();
+			Chalk = 0;
+			WaypointHansel = new Waypoint(); //ToDo: Init Waypoint setzen !---!---!---!---!
+			WaypointGretel = new Waypoint(); //ToDo: Init Waypoint setzen !---!---!---!---!
+			Scenes = new SceneData[1]; //ToDo: Anzahl Scenes setzen !---!---!---!---!
+		}
+
+		public static void Load(Savegame pSavegame) //Muss static sein damit das Savegame als solches gesetzt werden kann.
+		{
+			FileInfo file = new FileInfo(pSavegame.SavegamePath);
 			if (!file.Exists)
-				Reset();
-			Savegame TmpSavegame;
-			xmlReader = new StreamReader(SavegamePath);
-			TmpSavegame = (Savegame)SavegameSerializer.Deserialize(xmlReader); //Savegame aus File laden
+				pSavegame.Reset();
+			xmlReader = new StreamReader(pSavegame.SavegamePath);
+			pSavegame = new Savegame((Savegame)SavegameSerializer.Deserialize(xmlReader)); //Savegame aus File laden
 			xmlReader.Close();
-			Artefacts = TmpSavegame.Artefacts;
-			Toys = TmpSavegame.Toys;
-			Diary = TmpSavegame.Diary;
-			InventoryHansel = TmpSavegame.InventoryHansel;
-			InventoryGretel = TmpSavegame.InventoryGretel;
-			Chalk = TmpSavegame.Chalk;
-			WaypointHansel = TmpSavegame.WaypointHansel;
-			WaypointGretel = TmpSavegame.WaypointGretel;
-			Scenes = TmpSavegame.Scenes;
 		}
 
 		/// <summary>
@@ -115,7 +125,9 @@ namespace HanselAndGretel.Data
 
 		public void Reset()
 		{
-			//SaveGame von SceneData Files neu mit default Werten erstellen.
+			Initialize(); //Flush Savegame mit default Werten
+			for (int i = 0; i < Scenes.Length; i++)
+				LoadLevel(i); //Scenes neu laden
 		}
 
 		protected string LevelNameFromId(int pLevelId)
