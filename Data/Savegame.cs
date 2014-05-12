@@ -1,12 +1,11 @@
-﻿using HanselAndGretel.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace HanselAndGretel
+namespace HanselAndGretel.Data
 {
 	public class Savegame
 	{
@@ -26,9 +25,13 @@ namespace HanselAndGretel
 		public SceneData[] Scenes;
 
 		[XmlIgnoreAttribute]
-		protected static const string DefaultScenePath = Environment.CurrentDirectory + @"\Content\scenes";
+		protected static string ScenePath = Environment.CurrentDirectory + @"\Content\scenes";
 		[XmlIgnoreAttribute]
-		protected static XmlSerializer xmlSerializer = new XmlSerializer(typeof(SceneData));
+		protected string SavegamePath = Environment.CurrentDirectory + @"\save.hugs"; //Hänsle Und Gretel Savegame
+		[XmlIgnoreAttribute]
+		protected static XmlSerializer SceneSerializer = new XmlSerializer(typeof(SceneData));
+		[XmlIgnoreAttribute]
+		protected static XmlSerializer SavegameSerializer = new XmlSerializer(typeof(Savegame));
 		[XmlIgnoreAttribute]
 		protected static StreamReader xmlReader;
 		[XmlIgnoreAttribute]
@@ -37,6 +40,11 @@ namespace HanselAndGretel
 		#endregion
 
 		#region Constructor
+
+		public Savegame()
+		{
+
+		}
 
 		#endregion
 
@@ -50,43 +58,73 @@ namespace HanselAndGretel
 
 		public void Load()
 		{
-			//Savegame aus File laden
+			FileInfo file = new FileInfo(SavegamePath);
+			if (!file.Exists)
+				Reset();
+			Savegame TmpSavegame;
+			xmlReader = new StreamReader(SavegamePath);
+			TmpSavegame = (Savegame)SavegameSerializer.Deserialize(xmlReader); //Savegame aus File laden
+			xmlReader.Close();
+			Artefacts = TmpSavegame.Artefacts;
+			Toys = TmpSavegame.Toys;
+			Diary = TmpSavegame.Diary;
+			InventoryHansel = TmpSavegame.InventoryHansel;
+			InventoryGretel = TmpSavegame.InventoryGretel;
+			Chalk = TmpSavegame.Chalk;
+			WaypointHansel = TmpSavegame.WaypointHansel;
+			WaypointGretel = TmpSavegame.WaypointGretel;
+			Scenes = TmpSavegame.Scenes;
 		}
 
+		/// <summary>
+		/// Für den Editor und für Reset(): Lädt die Scenes in ScenePath in Scenes[].
+		/// </summary>
+		/// <param name="pLevelId">000 - 999</param>
 		public void LoadLevel(int pLevelId)
 		{
 			Scenes[pLevelId].ResetLevel();
-			DirectoryInfo sceneDirectory = new DirectoryInfo(DefaultScenePath); //Goto Scene Directory
-			if (!sceneDirectory.Exists) //Checken ob das Directory existiert
-				return;
-			foreach (FileInfo f in sceneDirectory.GetFiles()) //Enthaltene Files durchgehen
-			{
-				if (f.Name == pLevelId.ToString() + ".hug") //Passendes Scene File heraus filtern
-				{
-					xmlReader = new StreamReader(f.FullName);
-					Scenes[pLevelId] = (SceneData)xmlSerializer.Deserialize(xmlReader); //sData File in SpineData Object umwandeln
-					xmlReader.Close();
-					break;
-				}
-			}
-			
+			FileInfo file = new FileInfo(ScenePath + "\\" + LevelNameFromId(pLevelId) + ".hug");
+			if (file == null)
+				throw new FileNotFoundException("Die Scene {0} existiert nicht! WIESO?!?", LevelNameFromId(pLevelId));
+			xmlReader = new StreamReader(file.FullName);
+			Scenes[pLevelId] = (SceneData)SceneSerializer.Deserialize(xmlReader); //sData File in SpineData Object umwandeln
+			xmlReader.Close();
 		}
 
-		public void Save()
+		/// <summary>
+		/// Speichert pSavegame an pSavegame.SavegamePath.
+		/// </summary>
+		/// <param name="pSavegame">Savegame, das gesaved werden soll.</param>
+		public static void Save(Savegame pSavegame) //Muss static sein damit das Savegame als solches serialisiert werden kann.
 		{
-			//Savegame in File schreiben
+			xmlWriter = new StreamWriter(pSavegame.SavegamePath);
+			SavegameSerializer.Serialize(xmlWriter, pSavegame); //Savegame in File schreiben
+			xmlWriter.Close();
 		}
 
+		/// <summary>
+		/// Für den Editor: Speichert eine Scene als pLevelId.hug
+		/// </summary>
+		/// <param name="pLevelId">000 - 999</param>
 		public void SaveLevel(int pLevelId)
 		{
-			xmlWriter = new StreamWriter(DefaultScenePath + "\\" + pLevelId.ToString() + ".hug");
-			xmlSerializer.Serialize(xmlWriter, Scenes[pLevelId]);
+			xmlWriter = new StreamWriter(ScenePath + "\\" + LevelNameFromId(pLevelId) + ".hug");
+			SceneSerializer.Serialize(xmlWriter, Scenes[pLevelId]);
 			xmlWriter.Close();
 		}
 
 		public void Reset()
 		{
 			//SaveGame von SceneData Files neu mit default Werten erstellen.
+		}
+
+		protected string LevelNameFromId(int pLevelId)
+		{
+			string LevelName = "";
+			for (int i = 0; i < 3 - pLevelId.ToString().Length; i++)
+				LevelName += "0";
+			LevelName += pLevelId.ToString();
+			return LevelName;
 		}
 
 		#endregion
