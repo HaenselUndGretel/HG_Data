@@ -59,7 +59,7 @@ namespace HanselAndGretel.Data
 		// Wird für die Serializierung benötigt
 		public SceneData()
 		{
-
+			Initialize();
 		}
 		#endregion
 

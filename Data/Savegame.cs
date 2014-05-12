@@ -25,7 +25,7 @@ namespace HanselAndGretel.Data
 		public SceneData[] Scenes;
 
 		[XmlIgnoreAttribute]
-		protected static string ScenePath = Environment.CurrentDirectory + @"\Content\scenes";
+		protected static string ScenePath = Environment.CurrentDirectory + @"\Content\hug";
 		[XmlIgnoreAttribute]
 		protected string SavegamePath = Environment.CurrentDirectory + @"\save.hugs"; //Hänsle Und Gretel Savegame
 		[XmlIgnoreAttribute]
@@ -74,6 +74,8 @@ namespace HanselAndGretel.Data
 			WaypointHansel = new Waypoint(); //ToDo: Init Waypoint setzen !---!---!---!---!
 			WaypointGretel = new Waypoint(); //ToDo: Init Waypoint setzen !---!---!---!---!
 			Scenes = new SceneData[1]; //ToDo: Anzahl Scenes setzen !---!---!---!---!
+			for (int i = 0; i < Scenes.Length; i++)
+				Scenes[i] = new SceneData(); //Scenes initialisieren
 		}
 
 		public static void Load(Savegame pSavegame) //Muss static sein damit das Savegame als solches gesetzt werden kann.
