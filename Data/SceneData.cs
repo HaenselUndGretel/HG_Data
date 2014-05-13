@@ -52,6 +52,11 @@ namespace HanselAndGretel.Data
 				{
 					TmpList.Add(wp.DrawPackage);
 				}
+				//Add EVERYTHING for Debug
+				//foreach (InteractiveObject obj in InteractiveObjects)
+				//{
+				//	TmpList.Add(obj.DrawPackage);
+				//}
 				return TmpList;
 			}
 		}

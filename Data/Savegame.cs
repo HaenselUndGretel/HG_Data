@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,10 +20,15 @@ namespace HanselAndGretel.Data
 		public Inventory InventoryGretel;
 		public int Chalk;
 
-		public Waypoint WaypointHansel;
-		public Waypoint WaypointGretel;
-
 		public SceneData[] Scenes;
+
+		public Vector2 PositionHansel;
+		public Vector2 PositionGretel;
+
+		/// <summary>
+		/// Saved Scene to start from.
+		/// </summary>
+		public int SceneId;
 
 		[XmlIgnoreAttribute]
 		protected static string ScenePath = Environment.CurrentDirectory + @"\Content\hug";
@@ -54,8 +60,9 @@ namespace HanselAndGretel.Data
 			InventoryHansel = pSavegame.InventoryHansel;
 			InventoryGretel = pSavegame.InventoryGretel;
 			Chalk = pSavegame.Chalk;
-			WaypointHansel = pSavegame.WaypointHansel;
-			WaypointGretel = pSavegame.WaypointGretel;
+			PositionHansel = pSavegame.PositionHansel;
+			PositionGretel = pSavegame.PositionGretel;
+			SceneId = pSavegame.SceneId;
 			Scenes = pSavegame.Scenes;
 		}
 
@@ -71,8 +78,9 @@ namespace HanselAndGretel.Data
 			InventoryHansel = new Inventory();
 			InventoryGretel = new Inventory();
 			Chalk = 0;
-			WaypointHansel = new Waypoint(); //ToDo: Init Waypoint setzen !---!---!---!---!
-			WaypointGretel = new Waypoint(); //ToDo: Init Waypoint setzen !---!---!---!---!
+			PositionHansel = new Vector2(100, 100); //ToDo: Init Position setzen !---!---!---!---!
+			PositionGretel = new Vector2(100, 400); //ToDo: Init Position setzen !---!---!---!---!
+			SceneId = 0;
 			Scenes = new SceneData[1]; //ToDo: Anzahl Scenes setzen !---!---!---!---!
 			for (int i = 0; i < Scenes.Length; i++)
 				Scenes[i] = new SceneData(); //Scenes initialisieren

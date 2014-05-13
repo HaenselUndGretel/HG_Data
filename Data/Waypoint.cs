@@ -12,12 +12,23 @@ namespace HanselAndGretel.Data
 	{
 		#region Properties
 
+		protected int mDestinationSceneId;
+		protected int mDesinationWaypointId;
 		private bool mTwoPlayerEnter;
+		protected bool mOneWay;
+
 		#endregion
 
 		#region Getter & Setter
 
+		public int DestinationScene { get { return mDestinationSceneId; } set { mDestinationSceneId = value; } }
+		public int DestinationWaypoint { get { return mDesinationWaypointId; } set { mDesinationWaypointId = value; } }
+
 		public bool TwoPlayerEnter { get { return mTwoPlayerEnter; } set { mTwoPlayerEnter = value; } }
+		/// <summary>
+		/// Wenn True: Dieser Waypoint kann nur Betreten aber nicht Verlassen werden.
+		/// </summary>
+		public bool OneWay { get { return mOneWay; } set { mOneWay = value; } }
 
 		public DrawPackage DrawPackage { get { return new DrawPackage(Position, 0, CollisionBox, mDebugColor); } }
 
