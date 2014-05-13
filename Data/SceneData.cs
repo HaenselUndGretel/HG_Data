@@ -48,6 +48,10 @@ namespace HanselAndGretel.Data
 				{
 					TmpList.Add(new DrawPackage(new Vector2(rect.X, rect.Y), 0, rect, Color.Blue));
 				}
+				foreach (Waypoint wp in Waypoints)
+				{
+					TmpList.Add(wp.DrawPackage);
+				}
 				return TmpList;
 			}
 		}
@@ -71,6 +75,7 @@ namespace HanselAndGretel.Data
 
 		public void Initialize()
 		{
+			GamePlane = Rectangle.Empty;
 			MoveArea = new List<Rectangle>();
 			Waypoints = new List<Waypoint>();
 		}

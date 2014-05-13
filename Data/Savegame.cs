@@ -82,7 +82,10 @@ namespace HanselAndGretel.Data
 		{
 			FileInfo file = new FileInfo(pSavegame.SavegamePath);
 			if (!file.Exists)
+			{
 				pSavegame.Reset();
+				Savegame.Save(pSavegame);
+			}
 			xmlReader = new StreamReader(pSavegame.SavegamePath);
 			pSavegame = new Savegame((Savegame)SavegameSerializer.Deserialize(xmlReader)); //Savegame aus File laden
 			xmlReader.Close();
