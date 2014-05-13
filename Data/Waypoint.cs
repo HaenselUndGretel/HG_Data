@@ -1,4 +1,5 @@
 ﻿using KryptonEngine.Entities;
+using KryptonEngine.Manager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -53,9 +54,10 @@ namespace HanselAndGretel.Data
 			mDebugColor = Color.DarkGreen;
 		}
 
+		// Wird nur im Editor gezeichnet
 		public override void Draw(SpriteBatch spriteBatch)
 		{
-			spriteBatch.Draw(Texture, CollisionBox, Color.White);
+			spriteBatch.Draw(TextureManager.Instance.GetElementByString("IconMoveArea"), CollisionBox, Color.White);
 		}
 
 		#endregion

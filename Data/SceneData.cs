@@ -20,7 +20,12 @@ namespace HanselAndGretel.Data
 		public List<Rectangle> MoveArea;
 		public List<Waypoint> Waypoints;
 
-		//public List<InteractiveObject> InteractiveObjects;
+		// "ParallaxPlanes" 5 Planes die mit der Camera verschoben werde. InteractiveObjects aus [1] filtern.
+		// Nachträglich die InteractiveObjects für die letzte Ebene zeichnen, damit man auch hinter diesen laufen kann.
+		public List<List<GameObject>> ParallaxPlanes;
+
+		// Interactive Objects müssen aus der ParallaxPlane 1 rausgefiltert werden.
+		public List<InteractiveObject> InteractiveObjects;
 		//public List<InteractiveSpineObject> InteractiveSpineObjects;
 
 		//public List<Collectable> Collectables;
@@ -83,6 +88,13 @@ namespace HanselAndGretel.Data
 			GamePlane = Rectangle.Empty;
 			MoveArea = new List<Rectangle>();
 			Waypoints = new List<Waypoint>();
+
+			ParallaxPlanes = new List<List<GameObject>>();
+
+			for (int i = 0; i < 5; i++)
+				ParallaxPlanes.Add(new List<GameObject>());
+
+			InteractiveObjects = new List<InteractiveObject>();
 		}
 
 		/// <summary>
@@ -92,8 +104,24 @@ namespace HanselAndGretel.Data
 		{
 			MoveArea.Clear();
 			Waypoints.Clear();
+
+			ParallaxPlanes.Clear();
+
+			InteractiveObjects.Clear();
 		}
 
+		/// <summary>
+		/// Zum der InteractiveObjects damit diese später geupdatet werden können.
+		/// Gezeichnet werden muss nicht da sie noch in der ParallaxPlane erhalten bleiben.
+		/// </summary>
+		public void SortInteravtiveObjectsFromPlane()
+		{
+			foreach (GameObject go in ParallaxPlanes[1])
+			{
+				if(go.GetType() == typeof(InteractiveObject))
+				InteractiveObjects.Add((InteractiveObject)go);
+			}
+		}
 		#endregion
 	}
 }
