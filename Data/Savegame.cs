@@ -33,7 +33,7 @@ namespace HanselAndGretel.Data
 		[XmlIgnoreAttribute]
 		protected static string ScenePath = Environment.CurrentDirectory + @"\Content\hug";
 		[XmlIgnoreAttribute]
-		protected string SavegamePath = Environment.CurrentDirectory + @"\save.hugs"; //Hänsle Und Gretel Savegame
+		protected static string SavegamePath = Environment.CurrentDirectory + @"\save.hugs"; //Hänsel Und Gretel Savegame
 		[XmlIgnoreAttribute]
 		protected static XmlSerializer SceneSerializer = new XmlSerializer(typeof(SceneData));
 		[XmlIgnoreAttribute]
@@ -78,25 +78,29 @@ namespace HanselAndGretel.Data
 			InventoryHansel = new Inventory();
 			InventoryGretel = new Inventory();
 			Chalk = 0;
-			PositionHansel = new Vector2(100, 100); //ToDo: Init Position setzen !---!---!---!---!
-			PositionGretel = new Vector2(100, 400); //ToDo: Init Position setzen !---!---!---!---!
+			PositionHansel = new Vector2(80, 500); //ToDo: Init Position setzen !---!---!---!---!
+			PositionGretel = new Vector2(150, 500); //ToDo: Init Position setzen !---!---!---!---!
 			SceneId = 0;
 			Scenes = new SceneData[1]; //ToDo: Anzahl Scenes setzen !---!---!---!---!
 			for (int i = 0; i < Scenes.Length; i++)
 				Scenes[i] = new SceneData(); //Scenes initialisieren
 		}
 
-		public static void Load(Savegame pSavegame) //Muss static sein damit das Savegame als solches gesetzt werden kann.
+		public static Savegame Load() //Muss static sein damit das Savegame als solches gesetzt werden kann.
 		{
-			FileInfo file = new FileInfo(pSavegame.SavegamePath);
+			Savegame TmpSavegame;
+			FileInfo file = new FileInfo(Savegame.SavegamePath);
 			if (!file.Exists)
 			{
-				pSavegame.Reset();
-				Savegame.Save(pSavegame);
+				TmpSavegame = new Savegame();
+				TmpSavegame.Reset();
+				Savegame.Save(TmpSavegame);
+				return TmpSavegame;
 			}
-			xmlReader = new StreamReader(pSavegame.SavegamePath);
-			pSavegame = new Savegame((Savegame)SavegameSerializer.Deserialize(xmlReader)); //Savegame aus File laden
+			xmlReader = new StreamReader(Savegame.SavegamePath);
+			TmpSavegame = (Savegame)SavegameSerializer.Deserialize(xmlReader); //Savegame aus File laden
 			xmlReader.Close();
+			return TmpSavegame;
 		}
 
 		/// <summary>
@@ -107,7 +111,7 @@ namespace HanselAndGretel.Data
 		{
 			Scenes[pLevelId].ResetLevel();
 			FileInfo file = new FileInfo(ScenePath + "\\" + LevelNameFromId(pLevelId) + ".hug");
-			if (file == null)
+			if (!file.Exists)
 				throw new FileNotFoundException("Die Scene {0} existiert nicht! WIESO?!?", LevelNameFromId(pLevelId));
 			xmlReader = new StreamReader(file.FullName);
 			Scenes[pLevelId] = (SceneData)SceneSerializer.Deserialize(xmlReader); //sData File in SpineData Object umwandeln
@@ -120,7 +124,7 @@ namespace HanselAndGretel.Data
 		/// <param name="pSavegame">Savegame, das gesaved werden soll.</param>
 		public static void Save(Savegame pSavegame) //Muss static sein damit das Savegame als solches serialisiert werden kann.
 		{
-			xmlWriter = new StreamWriter(pSavegame.SavegamePath);
+			xmlWriter = new StreamWriter(Savegame.SavegamePath);
 			SavegameSerializer.Serialize(xmlWriter, pSavegame); //Savegame in File schreiben
 			xmlWriter.Close();
 		}

@@ -21,8 +21,7 @@ namespace HanselAndGretel.Data
 
 		#region Constructor
 
-		public Gretel(Vector2 pPosition)
-			:base(pPosition)
+		public Gretel()
 		{
 			Initialize();
 		}
@@ -37,7 +36,7 @@ namespace HanselAndGretel.Data
 			mInput = InputHelper.Player2;
 			mCollisionBox.Width = 40;
 			mCollisionBox.Height = 90;
-			mSpeed = 10;
+			mSpeed = 4;
 		}
 
 		#endregion

@@ -30,8 +30,7 @@ namespace HanselAndGretel.Data
 
 		#region Constructor
 
-		public Player(Vector2 pPosition)
-			:base(pPosition)
+		public Player()
 		{
 			
 		}

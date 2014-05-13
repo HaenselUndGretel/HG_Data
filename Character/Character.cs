@@ -30,6 +30,11 @@ namespace HanselAndGretel.Data
 
 		#region Constructor
 
+		public Character()
+		{
+
+		}
+
 		public Character(Vector2 pPosition)
 			:base(pPosition)
 		{
