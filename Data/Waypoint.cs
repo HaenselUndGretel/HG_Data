@@ -52,12 +52,33 @@ namespace HanselAndGretel.Data
 		public override void Initialize()
 		{
 			mDebugColor = Color.DarkGreen;
+			mOneWay = false;
+			mTwoPlayerEnter = true;
 		}
 
 		// Wird nur im Editor gezeichnet
 		public override void Draw(SpriteBatch spriteBatch)
 		{
 			spriteBatch.Draw(TextureManager.Instance.GetElementByString("IconMoveArea"), CollisionBox, Color.White);
+		}
+
+		/// <summary>
+		/// Wird für die Infobox im Editor benötigt.
+		/// </summary>
+		/// <returns></returns>
+		public override string GetInfo()
+		{
+			String tmpInfo;
+
+			tmpInfo = "Objekt ID: " + mId;
+			tmpInfo += "\nPosition: " + Position;
+			tmpInfo += "\nRectangle Dim.: " + mCollisionBox.Width + "; " + mCollisionBox.Height;
+			tmpInfo += "\nZiel Scene: " + mDestinationSceneId;
+			tmpInfo += "\nZiel Waypoint: " + mDesinationWaypointId;
+			tmpInfo += "\n2 Spieler: " + mTwoPlayerEnter;
+			tmpInfo += "\nOneway:" + mOneWay;
+
+			return tmpInfo;
 		}
 
 		#endregion
