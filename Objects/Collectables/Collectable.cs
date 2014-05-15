@@ -6,9 +6,11 @@ using System.Text;
 
 namespace HanselAndGretel.Data
 {
-	public abstract class Collectable : GameObject
+	public abstract class Collectable : Sprite
 	{
 		#region Properties
+
+
 
 		#endregion
 

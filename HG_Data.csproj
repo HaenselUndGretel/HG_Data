@@ -78,6 +78,7 @@
     <Compile Include="Objects\Collectables\Collectable.cs" />
     <Compile Include="Objects\Collectables\DiaryEntry.cs" />
     <Compile Include="Objects\Collectables\Toy.cs" />
+    <Compile Include="Objects\EventTrigger.cs" />
     <Compile Include="Objects\Items\Branch.cs" />
     <Compile Include="Objects\Items\Item.cs" />
     <Compile Include="Objects\Items\Key.cs" />
@@ -91,6 +92,9 @@
       <Project>{4beca7bb-c7c4-401e-a263-49b8bbba2cae}</Project>
       <Name>KryptonEngine</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
