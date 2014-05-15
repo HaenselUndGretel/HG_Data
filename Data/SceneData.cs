@@ -22,7 +22,7 @@ namespace HanselAndGretel.Data
 
 		// "ParallaxPlanes" 5 Planes die mit der Camera verschoben werde. InteractiveObjects aus [1] filtern.
 		// Nachträglich die InteractiveObjects für die letzte Ebene zeichnen, damit man auch hinter diesen laufen kann.
-		public List<ParallaxPlane> ParallaxPlanes;
+		public ParallaxPlane[] ParallaxPlanes;
 
 		// Interactive Objects müssen aus der ParallaxPlane 1 rausgefiltert werden.
 		public List<InteractiveObject> InteractiveObjects;
@@ -44,18 +44,20 @@ namespace HanselAndGretel.Data
 		// XmlIgnoreAttribute, da in DrawPackage Objekte sind die nicht serializiert werden können. Ich vermute das es das Skeleton ist.
 		// Müssen aber nicht Serializiert werden, da man das kopieren auch in einer Funktion machen kann.
 		[XmlIgnoreAttribute]
-		public List<DrawPackage> DrawPackagesPlanes
+		public List<DrawPackage> DrawPackagesPlanesBackground
 		{
 			get
 			{
 				List<DrawPackage> TmpList = new List<DrawPackage>();
-				foreach (ParallaxPlane plane in ParallaxPlanes)
+				for (int i = 4; i > 0; i--)
 				{
-					TmpList.AddRange(plane.DrawPackages);
+					TmpList.AddRange(ParallaxPlanes[i].DrawPackages);
 				}
 				return TmpList;
 			}
 		}
+		[XmlIgnoreAttribute]
+		public List<DrawPackage> DrawPackagesPlaneForeground { get { return ParallaxPlanes[0].DrawPackages; } }
 		[XmlIgnoreAttribute]
 		public List<DrawPackage> DrawPackagesGame
 		{
@@ -102,10 +104,7 @@ namespace HanselAndGretel.Data
 			MoveArea = new List<Rectangle>();
 			Waypoints = new List<Waypoint>();
 
-			ParallaxPlanes = new List<List<GameObject>>();
-
-			for (int i = 0; i < 5; i++)
-				ParallaxPlanes.Add(new List<GameObject>());
+			ParallaxPlanes = new ParallaxPlane[5];
 
 			InteractiveObjects = new List<InteractiveObject>();
 		}
