@@ -43,8 +43,24 @@ namespace HanselAndGretel.Data
 
 		// XmlIgnoreAttribute, da in DrawPackage Objekte sind die nicht serializiert werden können. Ich vermute das es das Skeleton ist.
 		// Müssen aber nicht Serializiert werden, da man das kopieren auch in einer Funktion machen kann.
+		//[XmlIgnoreAttribute]
+		//public List<DrawPackage> DrawPackagesPlanes
+		//{
+		//	get
+		//	{
+		//		List<DrawPackage> TmpList = new List<DrawPackage>();
+		//		foreach (List<ParallaxPlane> plane in ParallaxPlanes)
+		//		{
+		//			foreach (Sprite tile in plane.mTiles)
+		//			{
+		//				TmpList.Add(tile.DrawPackage);
+		//			}
+		//		}
+		//		return TmpList;
+		//	}
+		//}
 		[XmlIgnoreAttribute]
-		public List<DrawPackage> DrawPackages
+		public List<DrawPackage> DrawPackagesGame
 		{
 			get
 			{
