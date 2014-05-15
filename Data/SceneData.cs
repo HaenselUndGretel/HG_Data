@@ -28,10 +28,10 @@ namespace HanselAndGretel.Data
 		public List<InteractiveObject> InteractiveObjects;
 		//public List<InteractiveSpineObject> InteractiveSpineObjects;
 
-		//public List<Collectable> Collectables;
-		//public List<Item> Items;
+		public List<Collectable> Collectables;
+		public List<Item> Items;
 
-		//public List<Enemy> Enemies;
+		public List<Enemy> Enemies;
 
 		//public List<Light> Lights;
 		//public List<Emitter> Emitter;
