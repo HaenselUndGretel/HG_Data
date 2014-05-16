@@ -8,7 +8,7 @@ namespace HG_Data.Data
 {
 	public class EventTrigger
 	{
-		public enum Event
+		public enum EEvent
 		{
 			SpawnWitch,
 			TreeFalling,
@@ -20,7 +20,7 @@ namespace HG_Data.Data
 
 		protected List<Rectangle> mTrigger;
 		protected int mIdToTrigger;
-		protected Event mEvent;
+		protected EEvent mEvent;
 		protected bool mActivated;
 
 		#endregion
@@ -28,7 +28,7 @@ namespace HG_Data.Data
 		#region Getter & Setter
 
 		public List<Rectangle> Trigger { get { return mTrigger; } set { mTrigger = value; } }
-		public Event Event { get { return mEvent; } set { mEvent = value; } }
+		public EEvent Event { get { return mEvent; } set { mEvent = value; } }
 		public int Target { get { return mIdToTrigger; } set { mIdToTrigger = value; } }
 		public bool IsAcitvated { get { return mActivated; } set { mActivated = value; } }
 

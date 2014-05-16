@@ -105,7 +105,10 @@ namespace HanselAndGretel.Data
 			MoveArea = new List<Rectangle>();
 			Waypoints = new List<Waypoint>();
 			ParallaxPlanes = new ParallaxPlane[5];
-			InteractiveObjects = new List<InteractiveObject>();
+            for (int i = 0; i < 5; i++)
+                ParallaxPlanes[i] = new ParallaxPlane();
+
+            InteractiveObjects = new List<InteractiveObject>();
 		}
 
 		/// <summary>
@@ -117,6 +120,11 @@ namespace HanselAndGretel.Data
 			Waypoints.Clear();
 			//ParallaxPlanes.Clear();
 			InteractiveObjects.Clear();
+
+            for (int i = 0; i < ParallaxPlanes.Length; i++)
+            {
+                ParallaxPlanes[i].Tiles.Clear();
+            }
 		}
 
 		/// <summary>
@@ -125,10 +133,10 @@ namespace HanselAndGretel.Data
 		/// </summary>
 		public void SortInteravtiveObjectsFromPlane()
 		{
-			foreach (GameObject go in ParallaxPlanes[1])
+			foreach (GameObject go in ParallaxPlanes[1].Tiles)
 			{
 				if(go.GetType() == typeof(InteractiveObject))
-				InteractiveObjects.Add((InteractiveObject)go);
+				    InteractiveObjects.Add((InteractiveObject)go);
 			}
 		}
 		#endregion
