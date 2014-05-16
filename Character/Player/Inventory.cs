@@ -20,6 +20,11 @@ namespace HanselAndGretel.Data
 
 		#region Constructor
 
+		public Inventory()
+		{
+
+		}
+
 		#endregion
 
 		#region OverrideMethods

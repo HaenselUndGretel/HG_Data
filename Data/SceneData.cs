@@ -88,6 +88,7 @@ namespace HanselAndGretel.Data
 		// Wird für die Serializierung benötigt
 		public SceneData()
 		{
+
 			Initialize();
 		}
 		#endregion
@@ -103,9 +104,7 @@ namespace HanselAndGretel.Data
 			GamePlane = Rectangle.Empty;
 			MoveArea = new List<Rectangle>();
 			Waypoints = new List<Waypoint>();
-
 			ParallaxPlanes = new ParallaxPlane[5];
-
 			InteractiveObjects = new List<InteractiveObject>();
 		}
 
@@ -116,9 +115,7 @@ namespace HanselAndGretel.Data
 		{
 			MoveArea.Clear();
 			Waypoints.Clear();
-
-			ParallaxPlanes.Clear();
-
+			//ParallaxPlanes.Clear();
 			InteractiveObjects.Clear();
 		}
 

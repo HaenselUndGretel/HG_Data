@@ -17,6 +17,12 @@ namespace HanselAndGretel.Data
 
 		#region Constructor
 
+		public Knife()
+			:base()
+		{
+
+		}
+
 		#endregion
 
 		#region OverrideMethods

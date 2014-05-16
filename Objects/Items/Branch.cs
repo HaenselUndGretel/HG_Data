@@ -17,6 +17,12 @@ namespace HanselAndGretel.Data
 
 		#region Constructor
 
+		public Branch()
+			:base()
+		{
+
+		}
+
 		#endregion
 
 		#region OverrideMethods

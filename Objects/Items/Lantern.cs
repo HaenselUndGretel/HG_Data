@@ -9,6 +9,8 @@ namespace HanselAndGretel.Data
 	{
 		#region Properties
 
+		//protected Light rLight;
+
 		#endregion
 
 		#region Getter & Setter
@@ -16,6 +18,12 @@ namespace HanselAndGretel.Data
 		#endregion
 
 		#region Constructor
+
+		public Lantern()
+			:base()
+		{
+
+		}
 
 		#endregion
 

@@ -9,17 +9,32 @@ namespace HanselAndGretel.Data
 	{
 		#region Properties
 
+		protected int mCount;
+
 		#endregion
 
 		#region Getter & Setter
+
+		public int Count { get { return mCount; } set { mCount = value; } }
 
 		#endregion
 
 		#region Constructor
 
+		public Matches()
+			:base()
+		{
+			Initialize();
+		}
+
 		#endregion
 
 		#region OverrideMethods
+
+		public override void Initialize()
+		{
+			mCount = 10;
+		}
 
 		#endregion
 

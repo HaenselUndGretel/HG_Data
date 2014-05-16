@@ -1,4 +1,5 @@
 ﻿using KryptonEngine.Entities;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,18 @@ namespace HanselAndGretel.Data
 		#endregion
 
 		#region Constructor
+
+		public Collectable()
+			:base()
+		{
+
+		}
+
+		public Collectable(Vector2 pPosition, string pTextureName)
+			:base(pPosition, pTextureName)
+		{
+
+		}
 
 		#endregion
 
