@@ -4,9 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace HanselAndGretel.Data
 {
+	[Serializable, XmlInclude(typeof(Branch)), XmlInclude(typeof(Key)), XmlInclude(typeof(Knife)), XmlInclude(typeof(Lantern)), XmlInclude(typeof(Matches))]
 	public abstract class Item : Sprite
 	{
 		#region Properties
