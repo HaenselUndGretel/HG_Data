@@ -29,10 +29,6 @@ namespace HanselAndGretel.Data
 		public List<InteractiveObject> InteractiveObjects;
 		//public List<InteractiveSpriteObject> InteractiveSpriteObjects;
 		//public List<InteractiveSpineObject> InteractiveSpineObjects;
-<<<<<<< HEAD
-=======
-
->>>>>>> e282300f38d060c640c3bc2e11371b5d86e92d16
 		public List<Collectable> Collectables;
 		public List<Item> Items;
 		[XmlIgnoreAttribute]
@@ -111,10 +107,7 @@ namespace HanselAndGretel.Data
 			ParallaxPlanes = new ParallaxPlane[5];
             for (int i = 0; i < 5; i++)
                 ParallaxPlanes[i] = new ParallaxPlane();
-<<<<<<< HEAD
-=======
 			InteractiveObjects = new List<InteractiveObject>();
->>>>>>> e282300f38d060c640c3bc2e11371b5d86e92d16
 			//InteractiveSpriteObjects = new List<InteractiveSpriteObject>();
 			//InteractiveSpineObjects = new List<InteractiveSpineObject>();
 			Collectables = new List<Collectable>();
@@ -131,16 +124,10 @@ namespace HanselAndGretel.Data
 		{
 			MoveArea.Clear();
 			Waypoints.Clear();
-<<<<<<< HEAD
 			//ParallaxPlanes.Clear();
 			//InteractiveSpriteObjects.Clear();
 			//InteractiveSpineObjects.Clear();
 			InteractiveObjects.Clear();
-=======
-			InteractiveObjects.Clear();
-			//InteractiveSpriteObjects.Clear();
-			//InteractiveSpineObjects.Clear();
->>>>>>> e282300f38d060c640c3bc2e11371b5d86e92d16
 			Collectables.Clear();
 			Items.Clear();
 
@@ -158,10 +145,6 @@ namespace HanselAndGretel.Data
 			{
 				if (go.GetType() == typeof(InteractiveObject))
 					InteractiveObjects.Add((InteractiveObject)go);
-<<<<<<< HEAD
-
-=======
->>>>>>> e282300f38d060c640c3bc2e11371b5d86e92d16
 				//if(go.GetType() == typeof(InteractiveSpriteObject))
 				//	InteractiveSpriteObjects.Add((InteractiveSpriteObject)go);
 				//else if (go.GetType() == typeof(InteractiveSpineObject))
