@@ -86,6 +86,7 @@ namespace HanselAndGretel.Data
 		#endregion
 
 		#region Methods
+
 		#endregion
 	}
 }

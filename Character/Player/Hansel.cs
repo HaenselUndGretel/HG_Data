@@ -36,7 +36,6 @@ namespace HanselAndGretel.Data
 			mCollisionBox.Width = 50;
 			mCollisionBox.Height = 100;
 			mModel = new SpineObject("ashbrett");
-			mModel.Load();
 		}
 
 		#endregion

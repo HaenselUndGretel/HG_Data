@@ -24,6 +24,42 @@ namespace HanselAndGretel.Data
 
 		#region Getter & Setter
 
+		#region Redirect Position to Skeleton
+
+		new public Vector2 Position
+		{
+			set
+			{
+				mPosition = value;
+				mCollisionBox.X = (int)value.X;
+				mCollisionBox.Y = (int)value.Y;
+				mModel.Position = value;
+			}
+			get { return mPosition; }
+		}
+		new public int PositionX
+		{
+			set
+			{
+				mPosition.X = value;
+				mCollisionBox.X = value;
+				mModel.PositionX = value;
+			}
+			get { return (int)mPosition.X; }
+		}
+		new public int PositionY
+		{
+			set
+			{
+				mPosition.Y = value;
+				mCollisionBox.Y = value;
+				mModel.PositionY = value;
+			}
+			get { return (int)mPosition.Y; }
+		}
+
+		#endregion
+
 		public DrawPackage DrawPackage { get { return new DrawPackage(Position, 0, CollisionBox, mDebugColor, mModel.Skeleton); } }
 
 		#endregion
@@ -52,12 +88,12 @@ namespace HanselAndGretel.Data
 
 		public override void LoadContent()
 		{
-			throw new System.NotImplementedException();
+			mModel.Load();
 		}
 
 		public override void Update()
 		{
-			
+			mModel.Update();
 		}
 
 		#endregion
@@ -75,6 +111,23 @@ namespace HanselAndGretel.Data
 			Position += Collision.CollisionCheckedVector(CollisionBox, (int)pDelta.X, (int)pDelta.Y, pMoveArea);
 		}
 
+#region Animation
+
+		public void AnimCutToIdle()
+		{
+			mModel.AnimationState.ClearTracks();
+			mModel.AnimationState.SetAnimation(0, "idle", true);
+		}
+
+		public void AnimMoveAnimation(Vector2 pMovement)
+		{
+			if (pMovement.X >= 0)
+				mModel.Flip = false;
+			else
+				mModel.Flip = true;
+
+		}
+#endregion
 		#endregion
 	}
 }
