@@ -4,19 +4,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace HanselAndGretel.Data
 {
+	[Serializable, XmlInclude(typeof(Artefact)), XmlInclude(typeof(DiaryEntry)), XmlInclude(typeof(Toy))]
 	public abstract class Collectable : Sprite
 	{
 		#region Properties
 
-
+		protected int mCollectableId;
 
 		#endregion
 
 		#region Getter & Setter
 
+		// Zur auslese welche Daten das Collectable hat z.b. welche DiarySeite oder welches Spielzeug
+		public int CollectableId { get { return mCollectableId; } set { mCollectableId = value; } }
 		#endregion
 
 		#region Constructor
@@ -37,6 +41,15 @@ namespace HanselAndGretel.Data
 
 		#region OverrideMethods
 
+		public override string GetInfo()
+		{
+			String temp;
+
+			temp = base.GetInfo();
+			temp += "\nCollectable ID: " + mCollectableId;
+
+			return temp;
+		}
 		#endregion
 
 		#region Methods

@@ -1,4 +1,5 @@
 ﻿using KryptonEngine.Entities;
+using KryptonEngine.Interface;
 using KryptonEngine.Manager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,7 +16,7 @@ namespace HanselAndGretel.Data
 
 		protected int mDestinationSceneId;
 		protected int mDesinationWaypointId;
-		private bool mTwoPlayerEnter;
+		protected bool mTwoPlayerEnter;
 		protected bool mOneWay;
 
 		#endregion
@@ -54,6 +55,7 @@ namespace HanselAndGretel.Data
 			mDebugColor = Color.DarkGreen;
 			mOneWay = false;
 			mTwoPlayerEnter = true;
+			mDropDown = new DropDownMenu(Vector2.Zero, new List<String>() { "Do Stuff", "More Stuff" }, null);
 		}
 
 		// Wird nur im Editor gezeichnet
@@ -84,7 +86,6 @@ namespace HanselAndGretel.Data
 		#endregion
 
 		#region Methods
-
 		#endregion
 	}
 }

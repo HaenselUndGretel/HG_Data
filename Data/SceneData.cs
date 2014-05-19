@@ -25,12 +25,13 @@ namespace HanselAndGretel.Data
 		public ParallaxPlane[] ParallaxPlanes;
 
 		// Interactive Objects müssen aus der ParallaxPlane 1 rausgefiltert werden.
+
+		[XmlIgnoreAttribute]
 		public List<InteractiveObject> InteractiveObjects;
 		//public List<InteractiveSpineObject> InteractiveSpineObjects;
 
 		public List<Collectable> Collectables;
 		public List<Item> Items;
-
 		public List<Enemy> Enemies;
 
 		//public List<Light> Lights;
@@ -88,7 +89,6 @@ namespace HanselAndGretel.Data
 		// Wird für die Serializierung benötigt
 		public SceneData()
 		{
-
 			Initialize();
 		}
 		#endregion
@@ -109,6 +109,8 @@ namespace HanselAndGretel.Data
                 ParallaxPlanes[i] = new ParallaxPlane();
 
             InteractiveObjects = new List<InteractiveObject>();
+			Collectables = new List<Collectable>();
+			Items = new List<Item>();
 		}
 
 		/// <summary>
@@ -118,13 +120,12 @@ namespace HanselAndGretel.Data
 		{
 			MoveArea.Clear();
 			Waypoints.Clear();
-			//ParallaxPlanes.Clear();
 			InteractiveObjects.Clear();
+			Collectables.Clear();
+			Items.Clear();
 
             for (int i = 0; i < ParallaxPlanes.Length; i++)
-            {
                 ParallaxPlanes[i].Tiles.Clear();
-            }
 		}
 
 		/// <summary>

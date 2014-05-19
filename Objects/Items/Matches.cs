@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace HanselAndGretel.Data
 
 		public Matches()
 			:base()
+		{
+			Initialize();
+		}
+
+		public Matches(Vector2 pPosition, string pTextureName)
+			:base(pPosition, pTextureName)
 		{
 			Initialize();
 		}

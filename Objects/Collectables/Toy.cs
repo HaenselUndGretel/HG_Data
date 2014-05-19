@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,12 @@ namespace HanselAndGretel.Data
 
 		public Toy()
 			:base()
+		{
+
+		}
+
+		public Toy(Vector2 pPosition, String pName)
+			:base(pPosition, pName)
 		{
 
 		}
