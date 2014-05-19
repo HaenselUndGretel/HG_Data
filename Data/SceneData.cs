@@ -26,8 +26,9 @@ namespace HanselAndGretel.Data
 
 		// Interactive Objects müssen aus der ParallaxPlane 1 rausgefiltert werden.
 		[XmlIgnoreAttribute]
-		public List<InteractiveSpriteObject> InteractiveSpriteObjects;
-		public List<InteractiveSpineObject> InteractiveSpineObjects;
+		public List<InteractiveObject> InteractiveObjects;
+		//public List<InteractiveSpriteObject> InteractiveSpriteObjects;
+		//public List<InteractiveSpineObject> InteractiveSpineObjects;
 
 		public List<Collectable> Collectables;
 		public List<Item> Items;
@@ -106,8 +107,9 @@ namespace HanselAndGretel.Data
 			ParallaxPlanes = new ParallaxPlane[5];
             for (int i = 0; i < 5; i++)
                 ParallaxPlanes[i] = new ParallaxPlane();
-            InteractiveSpriteObjects = new List<InteractiveSpriteObject>();
-			InteractiveSpineObjects = new List<InteractiveSpineObject>();
+			InteractiveObjects = new List<InteractiveObject>();
+			//InteractiveSpriteObjects = new List<InteractiveSpriteObject>();
+			//InteractiveSpineObjects = new List<InteractiveSpineObject>();
 			Collectables = new List<Collectable>();
 			Items = new List<Item>();
 			Enemies = new List<Enemy>();
@@ -120,9 +122,9 @@ namespace HanselAndGretel.Data
 		{
 			MoveArea.Clear();
 			Waypoints.Clear();
-			//ParallaxPlanes.Clear();
-			InteractiveSpriteObjects.Clear();
-			InteractiveSpineObjects.Clear();
+			InteractiveObjects.Clear();
+			//InteractiveSpriteObjects.Clear();
+			//InteractiveSpineObjects.Clear();
 			Collectables.Clear();
 			Items.Clear();
 
@@ -138,10 +140,12 @@ namespace HanselAndGretel.Data
 		{
 			foreach (GameObject go in ParallaxPlanes[1].Tiles)
 			{
-				if(go.GetType() == typeof(InteractiveSpriteObject))
-				    InteractiveSpriteObjects.Add((InteractiveSpriteObject)go);
-				else if (go.GetType() == typeof(InteractiveSpineObject))
-					InteractiveSpineObjects.Add((InteractiveSpineObject)go);
+				if (go.GetType() == typeof(InteractiveObject))
+					InteractiveObjects.Add((InteractiveObject)go);
+				//if(go.GetType() == typeof(InteractiveSpriteObject))
+				//	InteractiveSpriteObjects.Add((InteractiveSpriteObject)go);
+				//else if (go.GetType() == typeof(InteractiveSpineObject))
+				//	InteractiveSpineObjects.Add((InteractiveSpineObject)go);
 			}
 		}
 		#endregion
