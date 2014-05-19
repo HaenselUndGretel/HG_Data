@@ -31,13 +31,13 @@ namespace HanselAndGretel.Data
 		public int SceneId;
 
 		[XmlIgnoreAttribute]
-		protected static string ScenePath = Environment.CurrentDirectory + @"\Content\hug";
+		protected static string ScenePath;
 		[XmlIgnoreAttribute]
-		protected static string SavegamePath = Environment.CurrentDirectory + @"\save.hugs"; //Hänsel Und Gretel Savegame
+		protected static string SavegamePath;
 		[XmlIgnoreAttribute]
-		protected static XmlSerializer SceneSerializer = new XmlSerializer(typeof(SceneData));
+		protected static XmlSerializer SceneSerializer;
 		[XmlIgnoreAttribute]
-		protected static XmlSerializer SavegameSerializer = new XmlSerializer(typeof(Savegame));
+		protected static XmlSerializer SavegameSerializer;
 		[XmlIgnoreAttribute]
 		protected static StreamReader xmlReader;
 		[XmlIgnoreAttribute]
@@ -54,6 +54,7 @@ namespace HanselAndGretel.Data
 
 		public Savegame(Savegame pSavegame)
 		{
+			Initialize();
 			Artefacts = pSavegame.Artefacts;
 			Toys = pSavegame.Toys;
 			Diary = pSavegame.Diary;
@@ -72,6 +73,10 @@ namespace HanselAndGretel.Data
 
 		public void Initialize()
 		{
+			ScenePath = Environment.CurrentDirectory + @"\Content\hug";
+			SavegamePath = Environment.CurrentDirectory + @"\save.hugs"; //Hänsel Und Gretel Savegame
+			SceneSerializer = new XmlSerializer(typeof(SceneData));
+			SavegameSerializer = new XmlSerializer(typeof(Savegame));
 			Artefacts = new List<Artefact>();
 			Toys = new List<Toy>();
 			Diary = new List<DiaryEntry>();

@@ -18,6 +18,12 @@ namespace HanselAndGretel.Data
 
 		#region Constructor
 
+		public Enemy()
+			:base()
+		{
+
+		}
+
 		public Enemy(Vector2 pPosition)
 			:base(pPosition)
 		{

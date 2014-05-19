@@ -14,7 +14,7 @@ namespace HanselAndGretel.Data
 	{
 		#region Properties
 
-		public SpineObject Model;
+		public SpineObject mModel;
 
 		//References
 		protected Camera rCamera;
@@ -24,7 +24,7 @@ namespace HanselAndGretel.Data
 
 		#region Getter & Setter
 
-		public DrawPackage DrawPackage { get { return new DrawPackage(Position, 0, CollisionBox, mDebugColor); } }
+		public DrawPackage DrawPackage { get { return new DrawPackage(Position, 0, CollisionBox, mDebugColor, mModel.Skeleton); } }
 
 		#endregion
 

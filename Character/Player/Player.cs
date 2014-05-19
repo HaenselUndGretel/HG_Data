@@ -43,6 +43,7 @@ namespace HanselAndGretel.Data
 		{
 			base.Initialize();
 			mDebugColor = Color.LimeGreen;
+			mSpeed = 4;
 		}
 
 		#endregion

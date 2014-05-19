@@ -1,4 +1,5 @@
 ﻿using KryptonEngine.Controls;
+using KryptonEngine.Entities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,8 @@ namespace HanselAndGretel.Data
 			mInput = InputHelper.Player2;
 			mCollisionBox.Width = 40;
 			mCollisionBox.Height = 90;
-			mSpeed = 4;
+			mModel = new SpineObject("sweetcheeks");
+			mModel.Load();
 		}
 
 		#endregion
