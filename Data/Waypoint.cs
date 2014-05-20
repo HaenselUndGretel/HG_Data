@@ -18,6 +18,7 @@ namespace HanselAndGretel.Data
 		protected int mDesinationWaypointId;
 		protected bool mTwoPlayerEnter;
 		protected bool mOneWay;
+		protected Vector2 mMovementOnEnter;
 
 		#endregion
 
@@ -31,6 +32,11 @@ namespace HanselAndGretel.Data
 		/// Wenn True: Dieser Waypoint kann nur Betreten aber nicht Verlassen werden.
 		/// </summary>
 		public bool OneWay { get { return mOneWay; } set { mOneWay = value; } }
+
+		/// <summary>
+		/// Bewegung beim Betreten des Wegpunkts.
+		/// </summary>
+		public Vector2 MovementOnEnter { get { return mMovementOnEnter; } set { mMovementOnEnter = value; } }
 
 		public DrawPackage DrawPackage { get { return new DrawPackage(Position, 0, CollisionBox, mDebugColor); } }
 
