@@ -136,16 +136,17 @@ namespace HanselAndGretel.Data
 			else
 				mModel.Flip = true;
 			//Get correct Animation
-			if (TmpMovement.Y > Math.Sin(67.5))
-				TmpAnimation = "walkUp";
-			else if (TmpMovement.Y > Math.Sin(22.5))
-				TmpAnimation = "walkSideUp";
-			else if (TmpMovement.Y > -Math.Sin(22.5))
-				TmpAnimation = "walkSide";
-			else if (TmpMovement.Y > -Math.Sin(67.5))
-				TmpAnimation = "walkSideDown";
-			else
-				TmpAnimation = "WalkDown";
+			//if (TmpMovement.Y > Math.Sin(67.5)) //Hoch
+			//	TmpAnimation = "walkUp";
+			//else if (TmpMovement.Y > Math.Sin(22.5)) //Seitlich hoch
+			//	TmpAnimation = "walkSideUp";
+			//else if (TmpMovement.Y > -Math.Sin(22.5)) //Seitlich
+			//	TmpAnimation = "walkSide";
+			//else if (TmpMovement.Y > -Math.Sin(67.5)) //Seitlich runter
+			//	TmpAnimation = "walkSideDown";
+			//else //Runter
+			//	TmpAnimation = "WalkDown";
+			TmpAnimation = "walk";
 			mModel.SetAnimation(TmpAnimation);
 		}
 #endregion

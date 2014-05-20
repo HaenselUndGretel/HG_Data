@@ -59,7 +59,9 @@ namespace HanselAndGretel.Data
 		public override void Update()
 		{
 			base.Update();
-			Move(ViewportCheckedVector(mInput.Movement * mSpeed), GetBodiesForCollisionCheck());
+			Vector2 TmpMovement = mInput.Movement * mSpeed;
+			Move(ViewportCheckedVector(TmpMovement), GetBodiesForCollisionCheck());
+			AnimBasicAnimation(TmpMovement);
 		}
 
 		#region Update Movement Helper
