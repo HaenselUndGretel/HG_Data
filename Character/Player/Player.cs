@@ -43,7 +43,7 @@ namespace HanselAndGretel.Data
 		{
 			base.Initialize();
 			mDebugColor = Color.LimeGreen;
-			mSpeed = 4;
+			mSpeed = 400;
 		}
 
 		#endregion
@@ -52,19 +52,28 @@ namespace HanselAndGretel.Data
 
 		public void LoadReferences(Camera pCamera, Player pOtherPlayer, SceneData pScene)
 		{
-			base.LoadReferences(pCamera, pScene);
+			base.LoadReferences(pCamera,pScene);
 			rOtherPlayer = pOtherPlayer;
 		}
 
-		public override void Update()
+		public void Update(bool pMayMove)
 		{
 			base.Update();
-			Vector2 TmpMovement = mInput.Movement * mSpeed;
-			Move(ViewportCheckedVector(TmpMovement), GetBodiesForCollisionCheck());
-			AnimBasicAnimation(TmpMovement);
+			if (pMayMove)
+			{
+				Vector2 TmpMovement = mInput.Movement * mSpeed * (EngineSettings.Time.ElapsedGameTime.Milliseconds / 1000f);
+				Move(ViewportCheckedVector(TmpMovement), GetBodiesForCollisionCheck());
+				AnimBasicAnimation(TmpMovement / mSpeed);	
+			}
 		}
 
 		#region Update Movement Helper
+
+		public void MoveManually(Vector2 pMovementDirection)
+		{
+			Move(ViewportCheckedVector(pMovementDirection * mSpeed * (EngineSettings.Time.ElapsedGameTime.Milliseconds / 1000f)), GetBodiesForCollisionCheck());
+			AnimBasicAnimation(pMovementDirection);
+		}
 
 		/// <summary>
 		/// Get Scene.MoveArea + OtherPlayers CollisionBox as Rectangle-List.
