@@ -7,7 +7,6 @@ namespace HanselAndGretel.Data
 {
 	public enum Activity
 	{
-		None,
 		CaughtInCobweb,
 		FreeFromCobweb,
 		CaughtInSwamp,
@@ -36,7 +35,6 @@ namespace HanselAndGretel.Data
 		{
 			return new List<Activity>()
 			{
-				Activity.None,
 				Activity.CaughtInCobweb,
 				Activity.FreeFromCobweb,
 				Activity.CaughtInSwamp,

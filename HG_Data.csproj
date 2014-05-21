@@ -74,7 +74,10 @@
     <Compile Include="Data\Savegame.cs" />
     <Compile Include="Data\SceneData.cs" />
     <Compile Include="Data\Waypoint.cs" />
-    <Compile Include="Objects\Collectable.cs" />
+    <Compile Include="Objects\Collectables\Artefact.cs" />
+    <Compile Include="Objects\Collectables\Collectable.cs" />
+    <Compile Include="Objects\Collectables\DiaryEntry.cs" />
+    <Compile Include="Objects\Collectables\Toy.cs" />
     <Compile Include="Objects\EventTrigger.cs" />
     <Compile Include="Objects\Items\Branch.cs" />
     <Compile Include="Objects\Items\Item.cs" />
