@@ -141,11 +141,16 @@ namespace HanselAndGretel.Data
                 ParallaxPlanes[i].Tiles.Clear();
 		}
 
+		public void SetupDeserialized()
+		{
+			SortInteractiveObjectsFromPlane();
+		}
+
 		/// <summary>
 		/// Zum der InteractiveObjects damit diese später geupdatet werden können.
 		/// Gezeichnet werden muss nicht da sie noch in der ParallaxPlane erhalten bleiben.
 		/// </summary>
-		public void SortInteravtiveObjectsFromPlane()
+		public void SortInteractiveObjectsFromPlane()
 		{
 			foreach (GameObject go in ParallaxPlanes[1].Tiles)
 			{

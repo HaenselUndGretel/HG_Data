@@ -105,6 +105,7 @@ namespace HanselAndGretel.Data
 			xmlReader = new StreamReader(Savegame.SavegamePath);
 			TmpSavegame = (Savegame)SavegameSerializer.Deserialize(xmlReader); //Savegame aus File laden
 			xmlReader.Close();
+			
 			return TmpSavegame;
 		}
 
@@ -121,6 +122,7 @@ namespace HanselAndGretel.Data
 			xmlReader = new StreamReader(file.FullName);
 			Scenes[pLevelId] = (SceneData)SceneSerializer.Deserialize(xmlReader); //sData File in SpineData Object umwandeln
 			xmlReader.Close();
+			Scenes[pLevelId].SetupDeserialized();
 		}
 
 		/// <summary>
@@ -159,6 +161,14 @@ namespace HanselAndGretel.Data
 				LevelName += "0";
 			LevelName += pLevelId.ToString();
 			return LevelName;
+		}
+
+		public void SetupDeserialized()
+		{
+			foreach (SceneData scene in Scenes)
+			{
+				scene.SetupDeserialized();
+			}
 		}
 
 		#endregion

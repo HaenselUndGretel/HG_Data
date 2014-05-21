@@ -104,9 +104,11 @@ namespace HanselAndGretel.Data
 			rCamera = pCamera;
 		}
 
-		public void Move(Vector2 pDelta, List<Rectangle> pMoveArea)
+		public Vector2 Move(Vector2 pDelta, List<Rectangle> pMoveArea)
 		{
-			Position += Collision.CollisionCheckedVector(CollisionBox, (int)pDelta.X, (int)pDelta.Y, pMoveArea);
+			Vector2 TmpMovement = Collision.CollisionCheckedVector(CollisionBox, (int)pDelta.X, (int)pDelta.Y, pMoveArea);
+			Position += TmpMovement;
+			return TmpMovement;
 		}
 
 #region Animation

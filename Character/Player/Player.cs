@@ -63,17 +63,27 @@ namespace HanselAndGretel.Data
 			if (pMayMove)
 			{
 				Vector2 TmpMovement = mInput.Movement * mSpeed * (EngineSettings.Time.ElapsedGameTime.Milliseconds / 1000f);
-				Move(ViewportCheckedVector(TmpMovement), GetBodiesForCollisionCheck(pScene));
-				AnimBasicAnimation(TmpMovement / mSpeed);	
+				AnimBasicAnimation(Move(ViewportCheckedVector(TmpMovement), GetBodiesForCollisionCheck(pScene)));
 			}
 		}
 
 		#region Update Movement Helper
 
-		public void MoveManually(Vector2 pMovementDirection, SceneData pScene)
+		public void MoveManually(Vector2 pMovementDirection, SceneData pScene, bool pIgnoreCollision)
 		{
-			Move(ViewportCheckedVector(pMovementDirection * mSpeed * (EngineSettings.Time.ElapsedGameTime.Milliseconds / 1000f)), GetBodiesForCollisionCheck(pScene));
-			AnimBasicAnimation(pMovementDirection);
+			Vector2 TmpMovement;
+			List<Rectangle> TmpBodies;
+			if (pIgnoreCollision)
+			{
+				TmpMovement = ViewportCheckedVector(pMovementDirection * mSpeed * (EngineSettings.Time.ElapsedGameTime.Milliseconds / 1000f));
+				TmpBodies = new List<Rectangle>();
+			}
+			else
+			{
+				TmpMovement = pMovementDirection * mSpeed * (EngineSettings.Time.ElapsedGameTime.Milliseconds / 1000f);
+				TmpBodies = GetBodiesForCollisionCheck(pScene);
+			}
+			AnimBasicAnimation(Move(TmpMovement, TmpBodies));
 		}
 
 		/// <summary>
