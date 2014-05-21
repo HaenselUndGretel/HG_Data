@@ -18,7 +18,6 @@ namespace HanselAndGretel.Data
 
 		//References
 		protected Camera rCamera;
-		protected SceneData rScene;
 
 		#endregion
 
@@ -100,10 +99,9 @@ namespace HanselAndGretel.Data
 
 		#region Methods
 
-		public void LoadReferences(Camera pCamera, SceneData pScene)
+		public void LoadReferences(Camera pCamera)
 		{
 			rCamera = pCamera;
-			rScene = pScene;
 		}
 
 		public void Move(Vector2 pDelta, List<Rectangle> pMoveArea)

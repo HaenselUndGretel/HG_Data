@@ -50,37 +50,37 @@ namespace HanselAndGretel.Data
 
 		#region Methods
 
-		public void LoadReferences(Camera pCamera, Player pOtherPlayer, SceneData pScene)
+		public void LoadReferences(Camera pCamera, Player pOtherPlayer)
 		{
-			base.LoadReferences(pCamera,pScene);
+			base.LoadReferences(pCamera);
 			rOtherPlayer = pOtherPlayer;
 		}
 
-		public void Update(bool pMayMove)
+		public void Update(bool pMayMove, SceneData pScene)
 		{
 			base.Update();
 			if (pMayMove)
 			{
 				Vector2 TmpMovement = mInput.Movement * mSpeed * (EngineSettings.Time.ElapsedGameTime.Milliseconds / 1000f);
-				Move(ViewportCheckedVector(TmpMovement), GetBodiesForCollisionCheck());
+				Move(ViewportCheckedVector(TmpMovement), GetBodiesForCollisionCheck(pScene));
 				AnimBasicAnimation(TmpMovement / mSpeed);	
 			}
 		}
 
 		#region Update Movement Helper
 
-		public void MoveManually(Vector2 pMovementDirection)
+		public void MoveManually(Vector2 pMovementDirection, SceneData pScene)
 		{
-			Move(ViewportCheckedVector(pMovementDirection * mSpeed * (EngineSettings.Time.ElapsedGameTime.Milliseconds / 1000f)), GetBodiesForCollisionCheck());
+			Move(ViewportCheckedVector(pMovementDirection * mSpeed * (EngineSettings.Time.ElapsedGameTime.Milliseconds / 1000f)), GetBodiesForCollisionCheck(pScene));
 			AnimBasicAnimation(pMovementDirection);
 		}
 
 		/// <summary>
 		/// Get Scene.MoveArea + OtherPlayers CollisionBox as Rectangle-List.
 		/// </summary>
-		protected List<Rectangle> GetBodiesForCollisionCheck()
+		protected List<Rectangle> GetBodiesForCollisionCheck(SceneData pScene)
 		{
-			List<Rectangle> TmpMoveArea = new List<Rectangle>(rScene.MoveArea);
+			List<Rectangle> TmpMoveArea = new List<Rectangle>(pScene.MoveArea);
 			TmpMoveArea.Add(rOtherPlayer.CollisionBox);
 			return TmpMoveArea;
 		}
