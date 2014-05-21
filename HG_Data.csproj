@@ -85,6 +85,10 @@
     <Compile Include="Objects\Items\Knife.cs" />
     <Compile Include="Objects\Items\Lantern.cs" />
     <Compile Include="Objects\Items\Matches.cs" />
+    <Compile Include="Objects\Lights\DirectionLight.cs" />
+    <Compile Include="Objects\Lights\Light.cs" />
+    <Compile Include="Objects\Lights\PointLight.cs" />
+    <Compile Include="Objects\Lights\SpotLight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

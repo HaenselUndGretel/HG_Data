@@ -18,6 +18,7 @@ namespace HanselAndGretel.Data
 		protected int mDesinationWaypointId;
 		protected bool mTwoPlayerEnter;
 		protected bool mOneWay;
+		protected const float mLeaveSpeed = 1.0f;
 		protected Vector2 mMovementOnEnter;
 
 		#endregion
@@ -61,7 +62,8 @@ namespace HanselAndGretel.Data
 			mDebugColor = Color.DarkGreen;
 			mOneWay = false;
 			mTwoPlayerEnter = true;
-			mDropDown = new DropDownMenu(Vector2.Zero, new List<String>() { "Do Stuff", "More Stuff" }, null);
+			mDropDown = new DropDownMenu(Vector2.Zero, new List<String>() { "Change One Way", "2 Player", "Verlasse: Norden", "Verlasse: Westen", "Verlasse: Süden", "Verlasse: Osten" }, new List<Action>() { ChangeOneWay, ChangeTwoPlayerEnter, LeaveNorth, LeaveWest, LeaveSouth, LeaveEast });
+			mMovementOnEnter = new Vector2(-mLeaveSpeed, 0);
 		}
 
 		// Wird nur im Editor gezeichnet
@@ -78,13 +80,23 @@ namespace HanselAndGretel.Data
 		{
 			String tmpInfo;
 
-			tmpInfo = "Objekt ID: " + mId;
-			tmpInfo += "\nPosition: " + Position;
-			tmpInfo += "\nRectangle Dim.: " + mCollisionBox.Width + "; " + mCollisionBox.Height;
+			tmpInfo = base.GetInfo();
 			tmpInfo += "\nZiel Scene: " + mDestinationSceneId;
 			tmpInfo += "\nZiel Waypoint: " + mDesinationWaypointId;
 			tmpInfo += "\n2 Spieler: " + mTwoPlayerEnter;
 			tmpInfo += "\nOneway:" + mOneWay;
+
+			String leave = "";
+			if (mMovementOnEnter.X > 0)
+				leave = "\nVerlassen : Osten";
+			else if(mMovementOnEnter.X < 0)
+				leave = "\nVerlassen : Westen";
+			else if(mMovementOnEnter.Y > 0)
+				leave = "\nVerlassen : Süden";
+			else if (mMovementOnEnter.Y < 0)
+				leave = "\nVerlassen : Norden";
+
+			tmpInfo += leave;
 
 			return tmpInfo;
 		}
@@ -92,6 +104,38 @@ namespace HanselAndGretel.Data
 		#endregion
 
 		#region Methods
+		#region DropDownMethods
+
+		private void ChangeOneWay()
+		{
+			mOneWay = !mOneWay;
+		}
+
+		private void ChangeTwoPlayerEnter()
+		{
+			mTwoPlayerEnter = !mTwoPlayerEnter;
+		}
+
+		private void LeaveNorth()
+		{
+			mMovementOnEnter = new Vector2(0, -mLeaveSpeed);
+		}
+
+		private void LeaveSouth()
+		{
+			mMovementOnEnter = new Vector2(0, mLeaveSpeed);
+		}
+
+		private void LeaveEast()
+		{
+			mMovementOnEnter = new Vector2(mLeaveSpeed, 0);
+		}
+
+		private void LeaveWest()
+		{
+			mMovementOnEnter = new Vector2(-mLeaveSpeed, 0);
+		}
+		#endregion
 
 		#endregion
 	}
