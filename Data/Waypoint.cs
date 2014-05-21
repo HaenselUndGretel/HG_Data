@@ -17,6 +17,7 @@ namespace HanselAndGretel.Data
 		protected int mDestinationSceneId;
 		protected int mDesinationWaypointId;
 		protected bool mOneWay;
+		protected const float mLeaveSpeed = 1;
 		protected Vector2 mMovementOnEnter;
 
 		#endregion
@@ -58,7 +59,7 @@ namespace HanselAndGretel.Data
 		{
 			mDebugColor = Color.DarkGreen;
 			mOneWay = false;
-			mDropDown = new DropDownMenu(Vector2.Zero, new List<String>() { "Change One Way", "2 Player", "Verlasse: Norden", "Verlasse: Westen", "Verlasse: Süden", "Verlasse: Osten" }, new List<Action>() { ChangeOneWay, ChangeTwoPlayerEnter, LeaveNorth, LeaveWest, LeaveSouth, LeaveEast });
+			mDropDown = new DropDownMenu(Vector2.Zero, new List<String>() { "Change One Way", "Verlasse: Norden", "Verlasse: Westen", "Verlasse: Süden", "Verlasse: Osten" }, new List<Action>() { ChangeOneWay, LeaveNorth, LeaveWest, LeaveSouth, LeaveEast });
 			mMovementOnEnter = new Vector2(-1f, 0);
 		}
 
@@ -106,29 +107,24 @@ namespace HanselAndGretel.Data
 			mOneWay = !mOneWay;
 		}
 
-		private void ChangeTwoPlayerEnter()
-		{
-			throw new Exception("Variable entfernt da sie nicht im Spiel nicht gebraucht wird.");
-		}
-
 		private void LeaveNorth()
 		{
-			mMovementOnEnter = new Vector2(0, -1f);
+			mMovementOnEnter = new Vector2(0, -mLeaveSpeed);
 		}
 
 		private void LeaveSouth()
 		{
-			mMovementOnEnter = new Vector2(0, 1f);
+			mMovementOnEnter = new Vector2(0, mLeaveSpeed);
 		}
 
 		private void LeaveEast()
 		{
-			mMovementOnEnter = new Vector2(1f, 0);
+			mMovementOnEnter = new Vector2(mLeaveSpeed, 0);
 		}
 
 		private void LeaveWest()
 		{
-			mMovementOnEnter = new Vector2(-1f, 0);
+			mMovementOnEnter = new Vector2(-mLeaveSpeed, 0);
 		}
 		#endregion
 
