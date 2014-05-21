@@ -25,7 +25,6 @@ namespace HanselAndGretel.Data
 		public ParallaxPlane[] ParallaxPlanes;
 
 		// Interactive Objects müssen aus der ParallaxPlane 1 rausgefiltert werden.
-		[XmlIgnoreAttribute]
 		public List<InteractiveObject> InteractiveObjects;
 		//public List<InteractiveSpriteObject> InteractiveSpriteObjects;
 		//public List<InteractiveSpineObject> InteractiveSpineObjects;
@@ -72,6 +71,10 @@ namespace HanselAndGretel.Data
 				foreach (Waypoint wp in Waypoints)
 				{
 					TmpList.Add(wp.DrawPackage);
+				}
+				foreach (InteractiveObject iObj in InteractiveObjects)
+				{
+					TmpList.Add(iObj.DrawPackage);
 				}
 				//Add EVERYTHING for Debug
 				//foreach (InteractiveObject obj in InteractiveObjects)
