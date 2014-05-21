@@ -16,9 +16,7 @@ namespace HanselAndGretel.Data
 
 		protected int mDestinationSceneId;
 		protected int mDesinationWaypointId;
-		protected bool mTwoPlayerEnter;
 		protected bool mOneWay;
-		protected const float mLeaveSpeed = 1.0f;
 		protected Vector2 mMovementOnEnter;
 
 		#endregion
@@ -28,7 +26,6 @@ namespace HanselAndGretel.Data
 		public int DestinationScene { get { return mDestinationSceneId; } set { mDestinationSceneId = value; } }
 		public int DestinationWaypoint { get { return mDesinationWaypointId; } set { mDesinationWaypointId = value; } }
 
-		public bool TwoPlayerEnter { get { return mTwoPlayerEnter; } set { mTwoPlayerEnter = value; } }
 		/// <summary>
 		/// Wenn True: Dieser Waypoint kann nur Betreten aber nicht Verlassen werden.
 		/// </summary>
@@ -61,9 +58,8 @@ namespace HanselAndGretel.Data
 		{
 			mDebugColor = Color.DarkGreen;
 			mOneWay = false;
-			mTwoPlayerEnter = true;
 			mDropDown = new DropDownMenu(Vector2.Zero, new List<String>() { "Change One Way", "2 Player", "Verlasse: Norden", "Verlasse: Westen", "Verlasse: Süden", "Verlasse: Osten" }, new List<Action>() { ChangeOneWay, ChangeTwoPlayerEnter, LeaveNorth, LeaveWest, LeaveSouth, LeaveEast });
-			mMovementOnEnter = new Vector2(-mLeaveSpeed, 0);
+			mMovementOnEnter = new Vector2(-1f, 0);
 		}
 
 		// Wird nur im Editor gezeichnet
@@ -83,7 +79,6 @@ namespace HanselAndGretel.Data
 			tmpInfo = base.GetInfo();
 			tmpInfo += "\nZiel Scene: " + mDestinationSceneId;
 			tmpInfo += "\nZiel Waypoint: " + mDesinationWaypointId;
-			tmpInfo += "\n2 Spieler: " + mTwoPlayerEnter;
 			tmpInfo += "\nOneway:" + mOneWay;
 
 			String leave = "";
@@ -113,27 +108,27 @@ namespace HanselAndGretel.Data
 
 		private void ChangeTwoPlayerEnter()
 		{
-			mTwoPlayerEnter = !mTwoPlayerEnter;
+			throw new Exception("Variable entfernt da sie nicht im Spiel nicht gebraucht wird.");
 		}
 
 		private void LeaveNorth()
 		{
-			mMovementOnEnter = new Vector2(0, -mLeaveSpeed);
+			mMovementOnEnter = new Vector2(0, -1f);
 		}
 
 		private void LeaveSouth()
 		{
-			mMovementOnEnter = new Vector2(0, mLeaveSpeed);
+			mMovementOnEnter = new Vector2(0, 1f);
 		}
 
 		private void LeaveEast()
 		{
-			mMovementOnEnter = new Vector2(mLeaveSpeed, 0);
+			mMovementOnEnter = new Vector2(1f, 0);
 		}
 
 		private void LeaveWest()
 		{
-			mMovementOnEnter = new Vector2(-mLeaveSpeed, 0);
+			mMovementOnEnter = new Vector2(-1f, 0);
 		}
 		#endregion
 
