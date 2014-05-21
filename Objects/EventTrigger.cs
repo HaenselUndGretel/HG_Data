@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HG_Data.Data
+namespace HanselAndGretel.Data
 {
 	public class EventTrigger
 	{

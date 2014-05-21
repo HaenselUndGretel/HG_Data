@@ -9,7 +9,6 @@ using KryptonEngine.Manager;
 using System.Xml.Serialization;
 using System.IO;
 using KryptonEngine;
-using HG_Data.Objects.Lights;
 
 namespace HanselAndGretel.Data
 {

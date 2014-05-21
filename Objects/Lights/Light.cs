@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace HG_Data.Objects.Lights
+namespace HanselAndGretel.Data
 {
 	[Serializable, XmlInclude(typeof(DirectionLight)), XmlInclude(typeof(PointLight)), XmlInclude(typeof(SpotLight))]
 	public class Light : GameObject

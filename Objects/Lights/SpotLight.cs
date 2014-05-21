@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HG_Data.Objects.Lights
+namespace HanselAndGretel.Data
 {
 	public class SpotLight : Light
 	{
