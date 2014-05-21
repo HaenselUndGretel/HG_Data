@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace HanselAndGretel.Data
 {
-	[Serializable, XmlInclude(typeof(Artefact)), XmlInclude(typeof(DiaryEntry)), XmlInclude(typeof(Toy))]
+	[Serializable]
 	public abstract class Collectable : Sprite
 	{
 		#region Properties
