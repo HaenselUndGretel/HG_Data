@@ -22,10 +22,8 @@ namespace HanselAndGretel.Data
 
 		// "ParallaxPlanes" 5 Planes die mit der Camera verschoben werde. InteractiveObjects aus [1] filtern.
 		// Nachträglich die InteractiveObjects für die letzte Ebene zeichnen, damit man auch hinter diesen laufen kann.
-		public ParallaxPlane[] ParallaxPlanes;
+		public List<GameObject> BackgroundSprites;
 
-		// Interactive Objects müssen aus der ParallaxPlane 1 rausgefiltert werden.
-		[XmlIgnoreAttribute]
 		public List<InteractiveObject> InteractiveObjects;
 		//public List<InteractiveSpriteObject> InteractiveSpriteObjects;
 		//public List<InteractiveSpineObject> InteractiveSpineObjects;
@@ -42,23 +40,6 @@ namespace HanselAndGretel.Data
 
 		#region Getter & Setter
 
-		// XmlIgnoreAttribute, da in DrawPackage Objekte sind die nicht serializiert werden können. Ich vermute das es das Skeleton ist.
-		// Müssen aber nicht Serializiert werden, da man das kopieren auch in einer Funktion machen kann.
-		[XmlIgnoreAttribute]
-		public List<DrawPackage> DrawPackagesPlanesBackground
-		{
-			get
-			{
-				List<DrawPackage> TmpList = new List<DrawPackage>();
-				for (int i = 4; i > 0; i--)
-				{
-					TmpList.AddRange(ParallaxPlanes[i].DrawPackages);
-				}
-				return TmpList;
-			}
-		}
-		[XmlIgnoreAttribute]
-		public List<DrawPackage> DrawPackagesPlaneForeground { get { return ParallaxPlanes[0].DrawPackages; } }
 		[XmlIgnoreAttribute]
 		public List<DrawPackage> DrawPackagesGame
 		{
@@ -77,6 +58,8 @@ namespace HanselAndGretel.Data
 				{
 					TmpList.Add(iObj.DrawPackage);
 				}
+				foreach (GameObject go in BackgroundSprites)
+					TmpList.Add(new DrawPackage(go.Position, go.DrawZ, go.CollisionBox, Color.White));
 				//Add EVERYTHING for Debug
 				//foreach (InteractiveObject obj in InteractiveObjects)
 				//{
@@ -108,9 +91,8 @@ namespace HanselAndGretel.Data
 			GamePlane = Rectangle.Empty;
 			MoveArea = new List<Rectangle>();
 			Waypoints = new List<Waypoint>();
-			ParallaxPlanes = new ParallaxPlane[5];
-            for (int i = 0; i < 5; i++)
-                ParallaxPlanes[i] = new ParallaxPlane();
+			BackgroundSprites = new List<GameObject>();
+
 			InteractiveObjects = new List<InteractiveObject>();
 			//InteractiveSpriteObjects = new List<InteractiveSpriteObject>();
 			//InteractiveSpineObjects = new List<InteractiveSpineObject>();
@@ -129,38 +111,19 @@ namespace HanselAndGretel.Data
 		{
 			MoveArea.Clear();
 			Waypoints.Clear();
-			//ParallaxPlanes.Clear();
+			BackgroundSprites.Clear();
 			//InteractiveSpriteObjects.Clear();
 			//InteractiveSpineObjects.Clear();
 			InteractiveObjects.Clear();
 			Collectables.Clear();
 			Items.Clear();
 			Lights.Clear();
-
-            for (int i = 0; i < ParallaxPlanes.Length; i++)
-                ParallaxPlanes[i].Tiles.Clear();
 		}
 
+		// Laden Texturen usw. von Manager das nicht mitserialisiert wird
 		public void SetupDeserialized()
 		{
-			SortInteractiveObjectsFromPlane();
-		}
-
-		/// <summary>
-		/// Zum der InteractiveObjects damit diese später geupdatet werden können.
-		/// Gezeichnet werden muss nicht da sie noch in der ParallaxPlane erhalten bleiben.
-		/// </summary>
-		public void SortInteractiveObjectsFromPlane()
-		{
-			foreach (GameObject go in ParallaxPlanes[1].Tiles)
-			{
-				if (go.GetType() == typeof(InteractiveObject))
-					InteractiveObjects.Add((InteractiveObject)go);
-				//if(go.GetType() == typeof(InteractiveSpriteObject))
-				//	InteractiveSpriteObjects.Add((InteractiveSpriteObject)go);
-				//else if (go.GetType() == typeof(InteractiveSpineObject))
-				//	InteractiveSpineObjects.Add((InteractiveSpineObject)go);
-			}
+			;
 		}
 		#endregion
 	}
