@@ -28,7 +28,7 @@ namespace HanselAndGretel.Data
 		SwitchItem,
 	}
 
-	public class Acitivty
+	public class ActivityState
 	{
 		#region Methods
 

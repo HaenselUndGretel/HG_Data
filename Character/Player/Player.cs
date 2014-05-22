@@ -27,6 +27,8 @@ namespace HanselAndGretel.Data
 
 		#region Getter & Setter
 
+		public InputHelper Input { get { return mInput; } }
+
 		#endregion
 
 		#region Constructor
@@ -44,7 +46,7 @@ namespace HanselAndGretel.Data
 		{
 			base.Initialize();
 			mDebugColor = Color.LimeGreen;
-			mAbilities = new List<Activity>(Acitivty.GetAllActivities());
+			mAbilities = new List<Activity>(ActivityState.GetAllActivities());
 			mCurrentActivity = Activity.None;
 			mSpeed = 400;
 		}
@@ -159,9 +161,10 @@ namespace HanselAndGretel.Data
 
 		#endregion
 
-		public void CheckForAbility(Activity pAcitvity)
+		public bool CheckForAbility(Activity pAcitvity)
 		{
 			throw new System.NotImplementedException();
+			return true;
 		}
 
 		#endregion

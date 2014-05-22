@@ -70,7 +70,7 @@
     <Compile Include="Character\Player\Inventory.cs" />
     <Compile Include="Character\Player\InventorySlot.cs" />
     <Compile Include="Character\Player\Player.cs" />
-    <Compile Include="Data\Activity.cs" />
+    <Compile Include="Data\ActivityState.cs" />
     <Compile Include="Data\Savegame.cs" />
     <Compile Include="Data\SceneData.cs" />
     <Compile Include="Data\Waypoint.cs" />
