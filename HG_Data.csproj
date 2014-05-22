@@ -76,6 +76,7 @@
     <Compile Include="Data\Waypoint.cs" />
     <Compile Include="Objects\Collectables\Collectable.cs" />
     <Compile Include="Objects\EventTrigger.cs" />
+    <Compile Include="Objects\InteractiveObject.cs" />
     <Compile Include="Objects\Items\Branch.cs" />
     <Compile Include="Objects\Items\Item.cs" />
     <Compile Include="Objects\Items\Key.cs" />
