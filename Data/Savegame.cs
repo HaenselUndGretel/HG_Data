@@ -12,9 +12,7 @@ namespace HanselAndGretel.Data
 	{
 		#region Properties
 
-		public List<Artefact> Artefacts;
-		public List<Toy> Toys;
-		public List<DiaryEntry> Diary;
+		public List<Collectable> Collectables;
 
 		public Inventory InventoryHansel;
 		public Inventory InventoryGretel;
@@ -55,9 +53,7 @@ namespace HanselAndGretel.Data
 		public Savegame(Savegame pSavegame)
 		{
 			Initialize();
-			Artefacts = pSavegame.Artefacts;
-			Toys = pSavegame.Toys;
-			Diary = pSavegame.Diary;
+			Collectables = pSavegame.Collectables;
 			InventoryHansel = pSavegame.InventoryHansel;
 			InventoryGretel = pSavegame.InventoryGretel;
 			Chalk = pSavegame.Chalk;
@@ -77,9 +73,7 @@ namespace HanselAndGretel.Data
 			SavegamePath = Environment.CurrentDirectory + @"\save.hugs"; //Hänsel Und Gretel Savegame
 			SceneSerializer = new XmlSerializer(typeof(SceneData));
 			SavegameSerializer = new XmlSerializer(typeof(Savegame));
-			Artefacts = new List<Artefact>();
-			Toys = new List<Toy>();
-			Diary = new List<DiaryEntry>();
+			Collectables = new List<Collectable>();
 			InventoryHansel = new Inventory();
 			InventoryGretel = new Inventory();
 			Chalk = 0;
