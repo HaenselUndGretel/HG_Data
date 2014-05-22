@@ -39,7 +39,8 @@ namespace HanselAndGretel.Data
 		public Light(Vector2 pPositon)
 			: base(pPositon)
 		{
-
+			// 64x64 Icongroße Hitbox
+			mCollisionBox = new Rectangle((int)pPositon.X, (int)pPositon.Y, 64, 64);
 		}
 		#endregion
 
