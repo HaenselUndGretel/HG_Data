@@ -21,13 +21,13 @@ namespace HanselAndGretel.Data
 
 		//References
 		protected Player rOtherPlayer;
-		
 
 		#endregion
 
 		#region Getter & Setter
 
 		public InputHelper Input { get { return mInput; } }
+		public float Speed { get { return mSpeed; } }
 
 		#endregion
 
@@ -60,30 +60,30 @@ namespace HanselAndGretel.Data
 			rOtherPlayer = pOtherPlayer;
 		}
 
-		public void Update(bool pMayMove, SceneData pScene)
+		public void Update(bool pMayMove, float pMovementSpeedFactor, SceneData pScene)
 		{
 			base.Update();
-			if (pMayMove)
+			if (pMayMove && pMovementSpeedFactor > 0)
 			{
-				Vector2 TmpMovement = mInput.Movement * mSpeed * (EngineSettings.Time.ElapsedGameTime.Milliseconds / 1000f);
+				Vector2 TmpMovement = mInput.Movement * mSpeed * pMovementSpeedFactor * (EngineSettings.Time.ElapsedGameTime.Milliseconds / 1000f);
 				AnimBasicAnimation(Move(ViewportCheckedVector(TmpMovement), GetBodiesForCollisionCheck(pScene)));
 			}
 		}
 
 		#region Update Movement Helper
 
-		public void MoveManually(Vector2 pMovementDirection, SceneData pScene, bool pIgnoreCollision)
+		public void MoveManually(Vector2 pMovementDirection, float pMovementSpeedFactor, SceneData pScene = null, bool pIgnoreCollision = true)
 		{
 			Vector2 TmpMovement;
 			List<Rectangle> TmpBodies;
 			if (pIgnoreCollision)
 			{
-				TmpMovement = ViewportCheckedVector(pMovementDirection * mSpeed * (EngineSettings.Time.ElapsedGameTime.Milliseconds / 1000f));
+				TmpMovement = ViewportCheckedVector(pMovementDirection * mSpeed * pMovementSpeedFactor * (EngineSettings.Time.ElapsedGameTime.Milliseconds / 1000f));
 				TmpBodies = new List<Rectangle>();
 			}
 			else
 			{
-				TmpMovement = pMovementDirection * mSpeed * (EngineSettings.Time.ElapsedGameTime.Milliseconds / 1000f);
+				TmpMovement = pMovementDirection * mSpeed * pMovementSpeedFactor * (EngineSettings.Time.ElapsedGameTime.Milliseconds / 1000f);
 				TmpBodies = GetBodiesForCollisionCheck(pScene);
 			}
 			AnimBasicAnimation(Move(TmpMovement, TmpBodies));
