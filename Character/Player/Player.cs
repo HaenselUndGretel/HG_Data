@@ -162,7 +162,8 @@ namespace HanselAndGretel.Data
 
 		public bool CheckForAbility(Activity pAcitvity)
 		{
-			throw new System.NotImplementedException();
+			if (mHandicaps.Contains(pAcitvity))
+				return false;
 			return true;
 		}
 

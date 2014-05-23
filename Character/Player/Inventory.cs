@@ -33,6 +33,11 @@ namespace HanselAndGretel.Data
 
 		#region Methods
 
+		public bool Contains(Type pItem)
+		{
+			return true;
+		}
+
 		#endregion
 	}
 }
