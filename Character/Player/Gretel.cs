@@ -38,7 +38,7 @@ namespace HanselAndGretel.Data
 			mCollisionBox.Width = 40;
 			mCollisionBox.Height = 90;
 			mModel = new SpineObject("sweetcheeks");
-			mAbilities.Remove(Activity.JumpOverGap);
+			mHandicaps.Add(Activity.JumpOverGap);
 		}
 
 		#endregion

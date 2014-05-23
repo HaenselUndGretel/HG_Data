@@ -36,9 +36,9 @@ namespace HanselAndGretel.Data
 			mCollisionBox.Width = 50;
 			mCollisionBox.Height = 100;
 			mModel = new SpineObject("ashbrett");
-			mAbilities.Remove(Activity.Crawl);
-			mAbilities.Remove(Activity.SlipThroughRock);
-			mAbilities.Remove(Activity.UseChalk);
+			mHandicaps.Add(Activity.SlipThroughRock);
+			mHandicaps.Add(Activity.Crawl);
+			mHandicaps.Add(Activity.UseChalk);
 		}
 
 		#endregion

@@ -14,8 +14,8 @@ namespace HanselAndGretel.Data
 		#region Properties
 
 		public Inventory Inventory;
-		public List<Activity> mAbilities;
-		public Activity mCurrentActivity;
+		public List<Activity> mHandicaps;
+		public ActivityState mCurrentActivity;
 		protected InputHelper mInput;
 		protected float mSpeed;
 
@@ -46,8 +46,7 @@ namespace HanselAndGretel.Data
 		{
 			base.Initialize();
 			mDebugColor = Color.LimeGreen;
-			mAbilities = new List<Activity>(ActivityState.GetAllActivities());
-			mCurrentActivity = Activity.None;
+			mHandicaps = new List<Activity>();
 			mSpeed = 400;
 		}
 
